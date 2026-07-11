@@ -1,4 +1,21 @@
 ﻿import { invitationConfig } from "@/config/invitation.config";
+import ChrysanthemumIcon from "@/components/ui/ChrysanthemumIcon";
+
+function ParentName({
+  name,
+  deceased,
+}: {
+  name: string;
+  deceased?: boolean;
+}) {
+  if (!deceased) return <>{name}</>;
+  return (
+    <span className="inline-flex items-center gap-1">
+      <span>故 {name}</span>
+      <ChrysanthemumIcon />
+    </span>
+  );
+}
 
 export default function Invitation() {
   const { title, paragraphs, groomFamily, brideFamily } =
@@ -27,11 +44,29 @@ export default function Invitation() {
         <div className="mt-14 border-t border-line pt-8">
           <div className="space-y-2 text-sm leading-relaxed text-ink-light">
             <p>
-              {groomFamily.father} · {groomFamily.mother}의 {groomFamily.order}{" "}
+              <ParentName
+                name={groomFamily.father}
+                deceased={groomFamily.fatherDeceased}
+              />{" "}
+              ·{" "}
+              <ParentName
+                name={groomFamily.mother}
+                deceased={groomFamily.motherDeceased}
+              />
+              의 {groomFamily.order}{" "}
               <span className="font-medium text-ink">{groomName}</span>
             </p>
             <p>
-              {brideFamily.father} · {brideFamily.mother}의 {brideFamily.order}{" "}
+              <ParentName
+                name={brideFamily.father}
+                deceased={brideFamily.fatherDeceased}
+              />{" "}
+              ·{" "}
+              <ParentName
+                name={brideFamily.mother}
+                deceased={brideFamily.motherDeceased}
+              />
+              의 {brideFamily.order}{" "}
               <span className="font-medium text-ink">{brideName}</span>
             </p>
           </div>

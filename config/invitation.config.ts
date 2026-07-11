@@ -22,7 +22,7 @@ export const invitationConfig: InvitationConfig = {
       "이제 같은 곳을 바라보며 걸어가려 합니다.",
       "저희 두 사람의 새로운 시작을 축복해 주시면 감사하겠습니다.",
     ],
-    groomFamily: { father: "황OO", mother: "김OO", order: "장남" },
+    groomFamily: { father: "황용각", mother: "한미자", order: "장남", motherDeceased: true },
     brideFamily: { father: "이OO", mother: "박OO", order: "장녀" },
   },
   eventInfo: {

@@ -30,8 +30,20 @@ export interface InvitationConfig {
   invitationMessage: {
     title: string;
     paragraphs: string[]; // 문단 단위 배열
-    groomFamily: { father: string; mother: string; order: string }; // order: "장남" 등
-    brideFamily: { father: string; mother: string; order: string };
+    groomFamily: {
+      father: string;
+      mother: string;
+      order: string; // order: "장남" 등
+      fatherDeceased?: boolean; // true면 이름 앞에 "故" 표기 + 국화 아이콘 노출
+      motherDeceased?: boolean;
+    };
+    brideFamily: {
+      father: string;
+      mother: string;
+      order: string;
+      fatherDeceased?: boolean;
+      motherDeceased?: boolean;
+    };
   };
   eventInfo: {
     date: string; // ISO date "2026-10-17"
