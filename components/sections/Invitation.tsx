@@ -11,8 +11,8 @@ function ParentName({
   if (!deceased) return <>{name}</>;
   return (
     <span className="inline-flex items-center gap-1">
-      <span>故 {name}</span>
       <ChrysanthemumIcon />
+      <span>{name}</span>
     </span>
   );
 }
