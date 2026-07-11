@@ -1,17 +1,17 @@
 import type { InvitationConfig } from "@/lib/types";
 
-// 샘플 데이터 (신랑 '준호', 신부 '민아')
+// 샘플 데이터 (신랑 '재원', 신부 '선영')
 // 실제 결혼식 정보가 확정되면 이 파일의 값만 교체하면 전체 청첩장이 업데이트됩니다.
 export const invitationConfig: InvitationConfig = {
   meta: {
-    siteTitle: "준호 ❤ 민아 결혼합니다",
+    siteTitle: "재원 ❤ 선영 결혼합니다",
     siteDescription: "2026년 11월 15일 일요일 오전 10시30분, MJ컨벤션",
     ogImageUrl: "https://res.cloudinary.com/your-cloud/image/upload/wedding/og-image.jpg",
     siteUrl: "https://your-wedding.vercel.app",
   },
   hero: {
-    groomName: "준호",
-    brideName: "민아",
+    groomName: "재원",
+    brideName: "선영",
     eventDateText: "2026. 11. 15 SUN  10:30 AM",
     backgroundImagePublicId: "wedding/hero_main",
   },
@@ -45,26 +45,26 @@ export const invitationConfig: InvitationConfig = {
   },
   accounts: {
     groomSide: [
-      { bank: "국민은행", accountNumber: "123456-78-901234", holder: "황준호" },
+      { bank: "국민은행", accountNumber: "123456-78-901234", holder: "황재원" },
     ],
     brideSide: [
-      { bank: "신한은행", accountNumber: "110-123-456789", holder: "이민아" },
+      { bank: "신한은행", accountNumber: "110-123-456789", holder: "주선영" },
     ],
   },
   contacts: {
     groomSide: [
-      { name: "황준호", phone: "010-1234-5678", relation: "신랑" },
+      { name: "황재원", phone: "010-1234-5678", relation: "신랑" },
       { name: "황OO", phone: "010-1111-2222", relation: "신랑 아버지" },
       { name: "김OO", phone: "010-3333-4444", relation: "신랑 어머니" },
     ],
     brideSide: [
-      { name: "이민아", phone: "010-5678-1234", relation: "신부" },
+      { name: "주선영", phone: "010-5678-1234", relation: "신부" },
       { name: "이OO", phone: "010-5555-6666", relation: "신부 아버지" },
       { name: "박OO", phone: "010-7777-8888", relation: "신부 어머니" },
     ],
   },
   share: {
-    kakaoTitle: "준호 ❤ 민아 결혼합니다",
+    kakaoTitle: "재원 ❤ 선영 결혼합니다",
     kakaoDescription: "2026년 11월 15일 일요일 오전 10시30분, MJ컨벤션",
     kakaoImageUrl: "https://res.cloudinary.com/your-cloud/image/upload/wedding/og-image.jpg",
     kakaoAppKey: "", // process.env.NEXT_PUBLIC_KAKAO_JS_KEY 사용 예정 (lib/kakao.ts에서 처리)
