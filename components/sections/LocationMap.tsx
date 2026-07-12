@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { invitationConfig } from "@/config/invitation.config";
 import { loadKakaoMapsScript } from "@/lib/kakao";
-import Toast from "@/components/ui/Toast";
+import { useToast } from "@/components/providers/ToastProvider";
 
 export default function LocationMap() {
   const { address, venueName, lat, lng, parkingInfo, transitInfo, shuttleInfo } =
     invitationConfig.location;
 
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const [toastVisible, setToastVisible] = useState(false);
+  const { showToast } = useToast();
 
   useEffect(() => {
     let cancelled = false;
@@ -38,8 +38,7 @@ export default function LocationMap() {
   const handleCopyAddress = async () => {
     try {
       await navigator.clipboard.writeText(address);
-      setToastVisible(true);
-      setTimeout(() => setToastVisible(false), 2000);
+      showToast("주소가 복사되었습니다");
     } catch (err) {
       console.error("주소 복사 실패:", err);
     }
@@ -113,8 +112,6 @@ export default function LocationMap() {
           </div>
         )}
       </div>
-
-      <Toast message="주소가 복사되었습니다" visible={toastVisible} />
     </section>
   );
 }

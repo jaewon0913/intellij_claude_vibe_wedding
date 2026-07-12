@@ -22,25 +22,25 @@ export const invitationConfig: InvitationConfig = {
       "이제 같은 곳을 바라보며 걸어가려 합니다.",
       "저희 두 사람의 새로운 시작을 축복해 주시면 감사하겠습니다.",
     ],
-    groomFamily: { father: "황용각", mother: "한미자", order: "장남", motherDeceased: true },
-    brideFamily: { father: "주낙영", mother: "박귀건", order: "장녀" },
+    groomFamily: { father: "황용각", mother: "한미자", order: "아들", motherDeceased: true },
+    brideFamily: { father: "주낙영", mother: "박귀건", order: "딸", motherDeceased: false },
   },
   eventInfo: {
     date: "2026-11-15",
     time: "10:30",
     venueName: "MJ컨벤션",
-    hallName: "그랜드홀 3층",
+    hallName: "파티오볼룸 5층",
   },
   gallery: {
     folder: "vibe_wedding/gallery",
   },
   location: {
-    address: "서울특별시 강남구 테헤란로 000",
+    address: "경기 부천시 소사구 경인로 386 1층",
     venueName: "MJ컨벤션",
-    lat: 37.5012743,
-    lng: 127.039585,
-    parkingInfo: "건물 지하 1~3층 주차장 이용 (2시간 무료)",
-    transitInfo: "2호선 강남역 3번 출구 도보 5분",
+    lat: 37.4817956,
+    lng: 126.7985091,
+    parkingInfo: "건물 주차타워 주차장 이용 (2시간 무료)",
+    transitInfo: "1호선 소사역 1번 출구 도보 5분",
     shuttleInfo: undefined,
   },
   accounts: {
@@ -54,8 +54,8 @@ export const invitationConfig: InvitationConfig = {
   contacts: {
     groomSide: [
       { name: "황재원", phone: "010-1234-5678", relation: "신랑" },
-      { name: "황OO", phone: "010-1111-2222", relation: "신랑 아버지" },
-      { name: "김OO", phone: "010-3333-4444", relation: "신랑 어머니" },
+      { name: "황용각", phone: "010-1111-2222", relation: "신랑 아버지" },
+      { name: "한미자", phone: "010-3333-4444", relation: "신랑 어머니" },
     ],
     brideSide: [
       { name: "주선영", phone: "010-5678-1234", relation: "신부" },
