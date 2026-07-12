@@ -16,6 +16,12 @@ export interface Person {
   phone: string; // "010-1234-5678" 형태 (tel: 링크 생성 시 자동 변환)
   relation: string; // "신랑", "신부", "신랑 아버지" 등
   photoPublicId?: string; // 프로필 사진(Cloudinary public_id). 신랑/신부 본인 카드에서 사용
+  mbti?: string;
+  hobby?: string;
+  specialty?: string;
+  icon?: string; // 프로필 하단에 들어가는 작은 이모지 (예: "🌳", "☀️")
+  // 소개 문구 줄 단위 배열. **텍스트** 로 감싸면 굵게 표시됨
+  introLines?: string[];
 }
 
 export interface BankAccount {

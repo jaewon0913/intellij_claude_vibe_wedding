@@ -53,12 +53,38 @@ export const invitationConfig: InvitationConfig = {
   },
   contacts: {
     groomSide: [
-      { name: "황재원", phone: "010-1234-5678", relation: "신랑" },
+      {
+        name: "황재원",
+        phone: "010-1234-5678",
+        relation: "신랑",
+        mbti: "ENFJ",
+        hobby: "신부 생각하기",
+        specialty: "신부 웃게 하기",
+        icon: "🌳",
+        introLines: [
+          "항상 든든하고 다정한",
+          "**나무 같은 남편**이 되겠습니다.",
+          "신부 웃음 지킴이는 제가 평생 맡겠습니다.",
+        ],
+      },
       { name: "황용각", phone: "010-1111-2222", relation: "신랑 아버지" },
       { name: "한미자", phone: "010-3333-4444", relation: "신랑 어머니" },
     ],
     brideSide: [
-      { name: "주선영", phone: "010-5678-1234", relation: "신부" },
+      {
+        name: "주선영",
+        phone: "010-5678-1234",
+        relation: "신부",
+        mbti: "ISTP",
+        hobby: "신랑 놀리기",
+        specialty: "신랑이랑 놀기",
+        icon: "☀️",
+        introLines: [
+          "곁을 밝히는 따뜻한",
+          "**햇살 같은 아내**가 되겠습니다.",
+          "신랑 하루의 비타민 역할, 평생 책임질게요.",
+        ],
+      },
       { name: "주낙영", phone: "010-5555-6666", relation: "신부 아버지" },
       { name: "박귀건", phone: "010-7777-8888", relation: "신부 어머니" },
     ],
