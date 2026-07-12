@@ -47,7 +47,7 @@ export default function LocationMap() {
   const kakaoMapLink = `https://map.kakao.com/link/to/${encodeURIComponent(
     venueName
   )},${lat},${lng}`;
-  const naverMapLink = `https://map.naver.com/p/directions/-/${lat},${lng}/-/-/walk?c=${lat},${lng}`;
+  const naverMapLink = `https://map.naver.com/p/directions/-/3za8aE,2AIuEt,${venueName},PLACE_POI/-/car?c=14.00,0,0,0,dh`;
   const tmapLink = `tmap://route?goalname=${encodeURIComponent(
     venueName
   )}&goalx=${lng}&goaly=${lat}`;

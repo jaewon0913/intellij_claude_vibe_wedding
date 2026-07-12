@@ -8,10 +8,11 @@ function ParentName({
   name: string;
   deceased?: boolean;
 }) {
-  if (!deceased) return <>{name}</>;
+  // 국화 아이콘이 있을 때와 없을 때 텍스트 시작 위치가 어긋나지 않도록,
+  // 고인이 아니어도 같은 너비의 자리를 투명하게 확보해둔다.
   return (
     <span className="inline-flex items-center gap-1">
-      <ChrysanthemumIcon />
+      <ChrysanthemumIcon className={deceased ? "" : "invisible"} />
       <span>{name}</span>
     </span>
   );
@@ -24,7 +25,7 @@ export default function Invitation() {
 
   return (
     <section className="bg-paper px-6 py-24 sm:px-10">
-      <div className="mx-auto max-w-md">
+      <div className="mx-auto max-w-md text-center">
         <p className="text-xs tracking-[0.35em] text-accent">💍 WEDDING INVITATION</p>
         <h2 className="mt-4 font-serif text-2xl leading-snug text-ink sm:text-3xl">
           {title}
