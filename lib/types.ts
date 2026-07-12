@@ -15,6 +15,7 @@ export interface Person {
   nameEn?: string;
   phone: string; // "010-1234-5678" 형태 (tel: 링크 생성 시 자동 변환)
   relation: string; // "신랑", "신부", "신랑 아버지" 등
+  photoPublicId?: string; // 프로필 사진(Cloudinary public_id). 신랑/신부 본인 카드에서 사용
 }
 
 export interface BankAccount {
