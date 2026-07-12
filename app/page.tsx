@@ -2,6 +2,7 @@
 import Invitation from "@/components/sections/Invitation";
 import EventInfo from "@/components/sections/EventInfo";
 import Gallery from "@/components/sections/Gallery";
+import LocationMap from "@/components/sections/LocationMap";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Invitation />
       <EventInfo />
       <Gallery />
+      <LocationMap />
     </main>
   );
 }
