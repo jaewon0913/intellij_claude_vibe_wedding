@@ -1,5 +1,11 @@
 // 기획서 8장 "설정 파일(Config) 스키마" 기준 타입 정의
 
+export interface GalleryImage {
+  id: string;
+  publicId: string; // Cloudinary public_id
+  sortOrder: number;
+}
+
 export interface Person {
   name: string;
   nameEn?: string;
