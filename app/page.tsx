@@ -1,7 +1,7 @@
 ﻿import Hero from "@/components/sections/Hero";
 import Invitation from "@/components/sections/Invitation";
-import GroomBride from "@/components/sections/GroomBride";
 import EventInfo from "@/components/sections/EventInfo";
+import GroomBride from "@/components/sections/GroomBride";
 import Gallery from "@/components/sections/Gallery";
 import LocationMap from "@/components/sections/LocationMap";
 import AccountInfo from "@/components/sections/AccountInfo";
@@ -12,8 +12,8 @@ export default function Home() {
     <main className="flex flex-1 flex-col">
       <Hero />
       <Invitation />
-      <GroomBride />
       <EventInfo />
+      <GroomBride />
       <Gallery />
       <LocationMap />
       <AccountInfo />
