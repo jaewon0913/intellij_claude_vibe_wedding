@@ -43,33 +43,44 @@ export default function Invitation() {
         </div>
 
         <div className="mt-14 border-t border-line pt-8">
-          <div className="space-y-2 text-sm leading-relaxed text-ink-light">
-            <p>
+          <div className="mx-auto inline-grid grid-cols-[auto_auto_auto_auto_auto_auto] items-center justify-center gap-x-1.5 gap-y-3 text-sm text-ink-light">
+            <span className="justify-self-end whitespace-nowrap">
               <ParentName
                 name={groomFamily.father}
                 deceased={groomFamily.fatherDeceased}
-              />{" "}
-              ·{" "}
+              />
+            </span>
+            <span className="justify-self-center">·</span>
+            <span className="justify-self-start whitespace-nowrap">
               <ParentName
                 name={groomFamily.mother}
                 deceased={groomFamily.motherDeceased}
               />
-              의 {groomFamily.order}{" "}
-              <span className="font-medium text-ink">{groomName}</span>
-            </p>
-            <p>
+            </span>
+            <span className="justify-self-start">의</span>
+            <span className="justify-self-start">{groomFamily.order}</span>
+            <span className="justify-self-start font-semibold text-ink">
+              {groomName}
+            </span>
+
+            <span className="justify-self-end whitespace-nowrap">
               <ParentName
                 name={brideFamily.father}
                 deceased={brideFamily.fatherDeceased}
-              />{" "}
-              ·{" "}
+              />
+            </span>
+            <span className="justify-self-center">·</span>
+            <span className="justify-self-start whitespace-nowrap">
               <ParentName
                 name={brideFamily.mother}
                 deceased={brideFamily.motherDeceased}
               />
-              의 {brideFamily.order}{" "}
-              <span className="font-medium text-ink">{brideName}</span>
-            </p>
+            </span>
+            <span className="justify-self-start">의</span>
+            <span className="justify-self-start">{brideFamily.order}</span>
+            <span className="justify-self-start font-semibold text-ink">
+              {brideName}
+            </span>
           </div>
         </div>
       </div>
