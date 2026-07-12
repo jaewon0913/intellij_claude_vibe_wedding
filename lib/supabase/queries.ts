@@ -16,8 +16,7 @@ const SAMPLE_GALLERY_IMAGES: GalleryImage[] = Array.from({ length: 6 }).map(
  * sort_order 순으로 가져온다. 아직 Supabase가 설정되지 않았다면
  * 샘플 데이터를 반환해 개발 중 레이아웃을 확인할 수 있게 한다.
  *
- * 테이블 스키마 예상:
- *   gallery_images (id, public_id text, sort_order int, is_visible boolean)
+ * 스키마: supabase/migrations/0001_create_gallery_images.sql 참고
  */
 export async function getGalleryImages(): Promise<GalleryImage[]> {
   if (!isSupabaseConfigured || !supabase) {
@@ -26,9 +25,10 @@ export async function getGalleryImages(): Promise<GalleryImage[]> {
 
   const { data, error } = await supabase
     .from("gallery_images")
-    .select("id, public_id, sort_order")
+    .select("id, public_id, sort_order, caption, width, height, category")
     .eq("is_visible", true)
-    .order("sort_order", { ascending: true });
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: true }); // sort_order 동률일 때 보조 정렬
 
   if (error || !data) {
     console.error("갤러리 이미지 조회 실패, 샘플 데이터로 대체합니다:", error);
@@ -39,5 +39,10 @@ export async function getGalleryImages(): Promise<GalleryImage[]> {
     id: String(row.id),
     publicId: row.public_id as string,
     sortOrder: row.sort_order as number,
+    caption: (row.caption as string | null) ?? undefined,
+    width: (row.width as number | null) ?? undefined,
+    height: (row.height as number | null) ?? undefined,
+    category: (row.category as string | null) ?? undefined,
   }));
 }
+

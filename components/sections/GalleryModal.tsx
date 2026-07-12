@@ -102,16 +102,23 @@ export default function GalleryModal({
       <div
         key={currentImage.id}
         onClick={(e) => e.stopPropagation()}
-        className="animate-fade-in-up relative h-[70vh] w-full max-w-lg"
+        className="animate-fade-in-up relative flex h-[70vh] w-full max-w-lg flex-col items-center justify-center"
         style={{ animationDuration: "0.35s" }}
       >
-        <Image
-          src={getCloudinaryUrl(currentImage.publicId, { width: 1080 })}
-          alt={`갤러리 사진 ${currentIndex + 1}`}
-          fill
-          sizes="100vw"
-          className="object-contain"
-        />
+        <div className="relative h-full w-full">
+          <Image
+            src={getCloudinaryUrl(currentImage.publicId, { width: 1080 })}
+            alt={currentImage.caption ?? `갤러리 사진 ${currentIndex + 1}`}
+            fill
+            sizes="100vw"
+            className="object-contain"
+          />
+        </div>
+        {currentImage.caption && (
+          <p className="mt-3 text-center text-sm text-white/80">
+            {currentImage.caption}
+          </p>
+        )}
       </div>
 
       <button

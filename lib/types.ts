@@ -4,6 +4,10 @@ export interface GalleryImage {
   id: string;
   publicId: string; // Cloudinary public_id
   sortOrder: number;
+  caption?: string;
+  width?: number;
+  height?: number;
+  category?: string;
 }
 
 export interface Person {
