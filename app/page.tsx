@@ -5,6 +5,7 @@ import EventInfo from "@/components/sections/EventInfo";
 import Gallery from "@/components/sections/Gallery";
 import LocationMap from "@/components/sections/LocationMap";
 import AccountInfo from "@/components/sections/AccountInfo";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Gallery />
       <LocationMap />
       <AccountInfo />
+      <Contact />
     </main>
   );
 }
