@@ -26,6 +26,7 @@ export interface InvitationConfig {
     brideName: string;
     eventDateText: string; // "2026.10.17 SAT 1:00 PM"
     backgroundImagePublicId: string; // Cloudinary public_id
+    backgroundImageUrl?: string; // 로컬(/public) 경로 또는 외부 URL. 설정 시 Cloudinary보다 우선 사용됨
   };
   invitationMessage: {
     title: string;

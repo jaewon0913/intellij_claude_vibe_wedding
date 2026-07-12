@@ -3,12 +3,18 @@ import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export default function Hero() {
-  const { groomName, brideName, eventDateText, backgroundImagePublicId } =
-    invitationConfig.hero;
+  const {
+    groomName,
+    brideName,
+    eventDateText,
+    backgroundImagePublicId,
+    backgroundImageUrl,
+  } = invitationConfig.hero;
 
-  const backgroundUrl = getCloudinaryUrl(backgroundImagePublicId, {
-    width: 1080,
-  });
+  // Cloudinary 연결 전까지는 public/images의 로컬 이미지를 우선 사용
+  const backgroundUrl =
+    backgroundImageUrl ??
+    getCloudinaryUrl(backgroundImagePublicId, { width: 1080 });
 
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-end overflow-hidden bg-ink">

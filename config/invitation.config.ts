@@ -14,6 +14,7 @@ export const invitationConfig: InvitationConfig = {
     brideName: "선영",
     eventDateText: "2026. 11. 15 SUN  10:30 AM",
     backgroundImagePublicId: "wedding/hero_main",
+    backgroundImageUrl: "/images/default_main.jpg", // Cloudinary 연결 전까지 임시 대표 사진
   },
   invitationMessage: {
     title: "저희 결혼합니다",
@@ -23,7 +24,7 @@ export const invitationConfig: InvitationConfig = {
       "저희 두 사람의 새로운 시작을 축복해 주시면 감사하겠습니다.",
     ],
     groomFamily: { father: "황용각", mother: "한미자", order: "장남", motherDeceased: true },
-    brideFamily: { father: "이OO", mother: "박OO", order: "장녀" },
+    brideFamily: { father: "주낙영", mother: "박귀건", order: "장녀" },
   },
   eventInfo: {
     date: "2026-11-15",
@@ -59,8 +60,8 @@ export const invitationConfig: InvitationConfig = {
     ],
     brideSide: [
       { name: "주선영", phone: "010-5678-1234", relation: "신부" },
-      { name: "이OO", phone: "010-5555-6666", relation: "신부 아버지" },
-      { name: "박OO", phone: "010-7777-8888", relation: "신부 어머니" },
+      { name: "주낙영", phone: "010-5555-6666", relation: "신부 아버지" },
+      { name: "박귀건", phone: "010-7777-8888", relation: "신부 어머니" },
     ],
   },
   share: {
