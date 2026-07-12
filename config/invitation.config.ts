@@ -13,8 +13,7 @@ export const invitationConfig: InvitationConfig = {
     groomName: "재원",
     brideName: "선영",
     eventDateText: "2026. 11. 15 SUN  10:30 AM",
-    backgroundImagePublicId: "wedding/hero_main",
-    backgroundImageUrl: "/images/default_main.jpg", // Cloudinary 연결 전까지 임시 대표 사진
+    backgroundImagePublicId: "default_main_dmgt4l",
   },
   invitationMessage: {
     title: "저희 결혼합니다",
@@ -33,7 +32,7 @@ export const invitationConfig: InvitationConfig = {
     hallName: "그랜드홀 3층",
   },
   gallery: {
-    folder: "wedding/gallery",
+    folder: "vibe_wedding/gallery",
   },
   location: {
     address: "서울특별시 강남구 테헤란로 000",
