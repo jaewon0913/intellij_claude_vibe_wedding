@@ -21,8 +21,8 @@
   --color-accent-soft: var(--color-accent-soft);
   --color-line: var(--color-line);
 
-  --font-serif: var(--font-noto-serif-kr);
-  --font-sans: var(--font-noto-sans-kr);
+  --font-serif: "Gowun Batang", serif;
+  --font-sans: "Pretendard Variable", "Pretendard", sans-serif;
 }
 
 /* 청첩장은 다크모드 대응 없이 항상 브런치 라이트 톤을 유지 */

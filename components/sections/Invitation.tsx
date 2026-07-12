@@ -25,7 +25,7 @@ export default function Invitation() {
   return (
     <section className="bg-paper px-6 py-24 sm:px-10">
       <div className="mx-auto max-w-md">
-        <p className="text-xs tracking-[0.35em] text-accent">INVITATION</p>
+        <p className="text-xs tracking-[0.35em] text-accent">💍 WEDDING INVITATION</p>
         <h2 className="mt-4 font-serif text-2xl leading-snug text-ink sm:text-3xl">
           {title}
         </h2>
