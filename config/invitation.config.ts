@@ -7,7 +7,7 @@ export const invitationConfig: InvitationConfig = {
     siteTitle: "재원 ❤ 선영 결혼합니다",
     siteDescription: "2026년 11월 15일 일요일 오전 10시30분, MJ컨벤션",
     ogImageUrl: "https://res.cloudinary.com/your-cloud/image/upload/wedding/og-image.jpg",
-    siteUrl: "https://your-wedding.vercel.app",
+    siteUrl: "https://intellij-claude-vibe-wedding.vercel.app",
   },
   hero: {
     groomName: "재원",
