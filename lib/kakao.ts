@@ -5,6 +5,7 @@
 declare global {
   interface Window {
     kakao: any;
+    Kakao: any;
   }
 }
 
@@ -39,4 +40,82 @@ export function loadKakaoMapsScript(): Promise<void> {
   });
 
   return kakaoScriptPromise;
+}
+
+// ---------------------------------------------------------------------------
+// 카카오톡 공유(Kakao.Share) SDK
+// 지도 SDK(dapi.kakao.com)와는 별개의 SDK(t1.kakaocdn.net)이며,
+// 같은 JavaScript 키(NEXT_PUBLIC_KAKAO_JS_KEY)를 사용한다.
+// ---------------------------------------------------------------------------
+
+const KAKAO_SHARE_SDK_VERSION = "2.7.5";
+
+let kakaoShareSdkPromise: Promise<void> | null = null;
+
+function loadKakaoShareSdk(): Promise<void> {
+  if (typeof window === "undefined") {
+    return Promise.resolve();
+  }
+
+  if (window.Kakao?.isInitialized?.()) {
+    return Promise.resolve();
+  }
+
+  if (kakaoShareSdkPromise) {
+    return kakaoShareSdkPromise;
+  }
+
+  kakaoShareSdkPromise = new Promise((resolve, reject) => {
+    const initialize = () => {
+      if (!window.Kakao.isInitialized()) {
+        window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
+      }
+      resolve();
+    };
+
+    if (window.Kakao) {
+      initialize();
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = `https://t1.kakaocdn.net/kakao_js_sdk/${KAKAO_SHARE_SDK_VERSION}/kakao.min.js`;
+    script.async = true;
+    script.onload = initialize;
+    script.onerror = () => {
+      kakaoShareSdkPromise = null;
+      reject(new Error("카카오 공유 SDK 로드에 실패했습니다."));
+    };
+    document.head.appendChild(script);
+  });
+
+  return kakaoShareSdkPromise;
+}
+
+export interface KakaoShareConfig {
+  title: string;
+  description: string;
+  imageUrl: string;
+  link: {
+    mobileWebUrl: string;
+    webUrl: string;
+  };
+}
+
+/**
+ * 버튼 클릭 시점에 최초로 SDK를 불러와 초기화한 뒤 공유 시트를 연다.
+ * (페이지 로드 시 바로 SDK를 받지 않는 지연 로딩 방식)
+ */
+export async function shareKakao(config: KakaoShareConfig): Promise<void> {
+  await loadKakaoShareSdk();
+
+  window.Kakao.Share.sendDefault({
+    objectType: "feed",
+    content: {
+      title: config.title,
+      description: config.description,
+      imageUrl: config.imageUrl,
+      link: config.link,
+    },
+  });
 }

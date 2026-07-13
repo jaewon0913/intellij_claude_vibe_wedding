@@ -55,9 +55,9 @@ export const invitationConfig: InvitationConfig = {
     groomSide: [
       {
         name: "황재원",
-        phone: "010-1234-5678",
+        phone: "010-9937-5580",
         relation: "신랑",
-        mbti: "ENFJ",
+        mbti: "INFJ",
         hobby: "신부 생각하기",
         specialty: "신부 웃게 하기",
         icon: "🌳",
@@ -94,5 +94,8 @@ export const invitationConfig: InvitationConfig = {
     kakaoDescription: "2026년 11월 15일 일요일 오전 10시30분, MJ컨벤션",
     kakaoImageUrl: "https://res.cloudinary.com/your-cloud/image/upload/wedding/og-image.jpg",
     kakaoAppKey: "", // process.env.NEXT_PUBLIC_KAKAO_JS_KEY 사용 예정 (lib/kakao.ts에서 처리)
+  },
+  closing: {
+    message: "저희의 시작을 함께해주셔서 감사합니다",
   },
 };

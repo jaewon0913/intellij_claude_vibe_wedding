@@ -6,6 +6,7 @@ import Gallery from "@/components/sections/Gallery";
 import LocationMap from "@/components/sections/LocationMap";
 import AccountInfo from "@/components/sections/AccountInfo";
 import Contact from "@/components/sections/Contact";
+import ShareFooter from "@/components/sections/ShareFooter";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <LocationMap />
       <AccountInfo />
       <Contact />
+      <ShareFooter />
     </main>
   );
 }
