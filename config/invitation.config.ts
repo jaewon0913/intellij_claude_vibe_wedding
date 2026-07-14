@@ -13,7 +13,7 @@ export const invitationConfig: InvitationConfig = {
     groomName: "재원",
     brideName: "선영",
     eventDateText: "2026. 11. 15 SUN  10:30 AM",
-    backgroundImagePublicId: "default_main_dmgt4l",
+    backgroundImagePublicId: "KakaoTalk_20260714_220643063_b9od1j",
   },
   invitationMessage: {
     title: "저희 결혼합니다",
@@ -46,9 +46,12 @@ export const invitationConfig: InvitationConfig = {
   accounts: {
     groomSide: [
       { bank: "국민은행", accountNumber: "123456-78-901234", holder: "황재원" },
+      { bank: "하나은행", accountNumber: "123456-78-901234", holder: "황용각" },
     ],
     brideSide: [
       { bank: "신한은행", accountNumber: "110-123-456789", holder: "주선영" },
+      { bank: "하나은행", accountNumber: "110-123-456789", holder: "주선영" },
+      { bank: "우리은행", accountNumber: "110-123-456789", holder: "주선영" },
     ],
   },
   contacts: {
@@ -66,16 +69,17 @@ export const invitationConfig: InvitationConfig = {
           "**나무 같은 남편**이 되겠습니다.",
           "신부 웃음 지킴이는 제가 평생 맡겠습니다.",
         ],
+        photoPublicId: "재원_어린시절_vjojq2",
       },
       { name: "황용각", phone: "010-1111-2222", relation: "신랑 아버지" },
-      { name: "한미자", phone: "010-3333-4444", relation: "신랑 어머니" },
+      //{ name: "한미자", phone: "010-3333-4444", relation: "신랑 어머니" },
     ],
     brideSide: [
       {
         name: "주선영",
-        phone: "010-5678-1234",
+        phone: "010-9855-7030",
         relation: "신부",
-        mbti: "ISTP",
+        mbti: "ENFP",
         hobby: "신랑 놀리기",
         specialty: "신랑이랑 놀기",
         icon: "☀️",
@@ -84,6 +88,7 @@ export const invitationConfig: InvitationConfig = {
           "**햇살 같은 아내**가 되겠습니다.",
           "신랑 하루의 비타민 역할, 평생 책임질게요.",
         ],
+        photoPublicId: "선영_어린시절_hkkqab",
       },
       { name: "주낙영", phone: "010-5555-6666", relation: "신부 아버지" },
       { name: "박귀건", phone: "010-7777-8888", relation: "신부 어머니" },
