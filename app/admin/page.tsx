@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { logout } from "./actions";
 
 export default function AdminDashboardPage() {
@@ -16,9 +17,12 @@ export default function AdminDashboardPage() {
           </form>
         </div>
 
-        <p className="mt-8 text-sm text-ink-light">
-          갤러리 사진 업로드/노출 관리 기능이 곧 이 화면에 추가될 예정이에요.
-        </p>
+        <Link
+          href="/admin/gallery"
+          className="mt-8 block rounded-xl border border-line px-4 py-3 text-sm text-ink transition hover:border-accent hover:text-accent"
+        >
+          갤러리 사진 관리 →
+        </Link>
       </div>
     </div>
   );

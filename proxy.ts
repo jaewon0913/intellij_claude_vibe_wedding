@@ -11,8 +11,14 @@ export function proxy(request: NextRequest) {
 
   const session = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
   const secret = process.env.ADMIN_SESSION_SECRET;
+  const isAuthorized = Boolean(secret) && session === secret;
 
-  if (!secret || session !== secret) {
+  if (!isAuthorized) {
+    // API 요청은 리다이렉트 대신 401 JSON을 반환해야 fetch() 쪽에서 다루기 쉬움
+    if (pathname.startsWith("/api/")) {
+      return NextResponse.json({ error: "인증이 필요합니다." }, { status: 401 });
+    }
+
     const loginUrl = new URL("/admin/login", request.url);
     return NextResponse.redirect(loginUrl);
   }
@@ -21,5 +27,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/api/admin/:path*"],
 };
+
