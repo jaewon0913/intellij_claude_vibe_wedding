@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
+import VisibilityToggle from "./VisibilityToggle";
 
 interface GalleryAdminItem {
   id: string;
@@ -39,8 +40,9 @@ export default function GalleryAdminList({
             />
           </div>
           <p className="mt-1 text-center text-[11px] text-ink-light">
-            #{img.sort_order} · {img.is_visible ? "노출중" : "숨김"}
+            #{img.sort_order}
           </p>
+          <VisibilityToggle id={img.id} initialVisible={img.is_visible} />
         </div>
       ))}
     </div>
