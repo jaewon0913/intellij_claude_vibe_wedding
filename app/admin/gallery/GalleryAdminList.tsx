@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import VisibilityToggle from "./VisibilityToggle";
+import ReorderButtons from "./ReorderButtons";
 
 interface GalleryAdminItem {
   id: string;
@@ -24,7 +25,7 @@ export default function GalleryAdminList({
 
   return (
     <div className="mt-10 grid grid-cols-3 gap-2">
-      {images.map((img) => (
+      {images.map((img, index) => (
         <div key={img.id}>
           <div className="relative aspect-square overflow-hidden rounded-md bg-accent-soft">
             <Image
@@ -42,6 +43,11 @@ export default function GalleryAdminList({
           <p className="mt-1 text-center text-[11px] text-ink-light">
             #{img.sort_order}
           </p>
+          <ReorderButtons
+            id={img.id}
+            isFirst={index === 0}
+            isLast={index === images.length - 1}
+          />
           <VisibilityToggle id={img.id} initialVisible={img.is_visible} />
         </div>
       ))}
