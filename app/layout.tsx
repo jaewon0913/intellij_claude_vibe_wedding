@@ -38,8 +38,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-paper text-ink">
-        <ToastProvider>{children}</ToastProvider>
+      <body className="min-h-full bg-ink text-ink">
+        <ToastProvider>
+          <div className="mx-auto flex min-h-screen w-full max-w-[480px] flex-col bg-paper shadow-2xl">
+            {children}
+          </div>
+        </ToastProvider>
       </body>
     </html>
   );
