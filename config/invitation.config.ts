@@ -14,11 +14,12 @@ export const invitationConfig: InvitationConfig = {
     brideName: "선영",
     eventDateText: "2026. 11. 15 SUN  10:30 AM",
     backgroundImagePublicId: "KakaoTalk_20260714_220643063_b9od1j",
+    backgroundVideoPublicId: "video_lbovw1",
   },
   invitationMessage: {
     title: "저희 결혼합니다",
     paragraphs: [
-      "서로가 마주 보던 두 사람이,",
+      "서로를 마주 보던 두 사람이,",
       "이제 같은 곳을 바라보며 걸어가려 합니다.",
       "저희 두 사람의 새로운 시작을 축복해 주시면 감사하겠습니다.",
     ],

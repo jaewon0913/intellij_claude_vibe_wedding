@@ -1,6 +1,6 @@
 ﻿import Image from "next/image";
 import { invitationConfig } from "@/config/invitation.config";
-import { getCloudinaryUrl } from "@/lib/cloudinary";
+import { getCloudinaryUrl, getCloudinaryVideoUrl } from "@/lib/cloudinary";
 
 export default function Hero() {
   const {
@@ -9,6 +9,7 @@ export default function Hero() {
     eventDateText,
     backgroundImagePublicId,
     backgroundImageUrl,
+    backgroundVideoPublicId,
   } = invitationConfig.hero;
 
   // Cloudinary 연결 전까지는 public/images의 로컬 이미지를 우선 사용
@@ -16,18 +17,37 @@ export default function Hero() {
     backgroundImageUrl ??
     getCloudinaryUrl(backgroundImagePublicId, { width: 1080 });
 
+  const backgroundVideoUrl = backgroundVideoPublicId
+    ? getCloudinaryVideoUrl(backgroundVideoPublicId, { width: 1080 })
+    : null;
+
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-end overflow-hidden bg-ink">
-      {/* 배경 이미지 (아직 실제 사진 업로드 전이면 accent-soft 톤으로 대체) */}
+      {/* 배경: 비디오가 지정돼 있으면 비디오, 아니면 이미지 */}
       <div className="absolute inset-0 bg-accent-soft">
-        <Image
-          src={backgroundUrl}
-          alt={`${groomName} ${brideName} 결혼식 대표 사진`}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        {backgroundVideoUrl ? (
+          <video
+            key={backgroundVideoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={backgroundUrl}
+            className="h-full w-full object-cover"
+          >
+            <source src={backgroundVideoUrl} type="video/mp4" />
+          </video>
+        ) : (
+          <Image
+            src={backgroundUrl}
+            alt={`${groomName} ${brideName} 결혼식 대표 사진`}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        )}
       </div>
 
       {/* 가독성을 위한 어두운 그라데이션 오버레이 */}

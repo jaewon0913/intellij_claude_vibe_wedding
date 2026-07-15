@@ -44,6 +44,7 @@ export interface InvitationConfig {
     eventDateText: string; // "2026.10.17 SAT 1:00 PM"
     backgroundImagePublicId: string; // Cloudinary public_id
     backgroundImageUrl?: string; // 로컬(/public) 경로 또는 외부 URL. 설정 시 Cloudinary보다 우선 사용됨
+    backgroundVideoPublicId?: string; // 설정 시 이미지 대신 Cloudinary 비디오를 배경으로 사용
   };
   invitationMessage: {
     title: string;
