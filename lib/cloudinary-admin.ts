@@ -38,3 +38,7 @@ export async function uploadImageToCloudinary(
     uploadStream.end(buffer);
   });
 }
+
+export async function deleteImageFromCloudinary(publicId: string): Promise<void> {
+  await cloudinary.uploader.destroy(publicId, { resource_type: "image" });
+}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import VisibilityToggle from "./VisibilityToggle";
 import ReorderButtons from "./ReorderButtons";
+import DeleteButton from "./DeleteButton";
 
 interface GalleryAdminItem {
   id: string;
@@ -49,6 +50,7 @@ export default function GalleryAdminList({
             isLast={index === images.length - 1}
           />
           <VisibilityToggle id={img.id} initialVisible={img.is_visible} />
+          <DeleteButton id={img.id} publicId={img.public_id} />
         </div>
       ))}
     </div>

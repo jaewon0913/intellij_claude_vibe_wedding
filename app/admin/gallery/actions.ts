@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { ADMIN_SESSION_COOKIE } from "@/lib/auth";
 import { supabaseAdmin } from "@/lib/supabase/admin-client";
+import { deleteImageFromCloudinary } from "@/lib/cloudinary-admin";
 
 async function assertAuthorized() {
   const cookieStore = await cookies();
@@ -75,6 +76,34 @@ export async function moveGalleryImage(id: string, direction: "up" | "down") {
     .update({ sort_order: current.sort_order })
     .eq("id", target.id);
   if (err2) throw new Error(err2.message);
+
+  revalidatePath("/admin/gallery");
+  revalidatePath("/");
+}
+
+export async function deleteGalleryImage(id: string, publicId: string) {
+  await assertAuthorized();
+
+  if (!supabaseAdmin) {
+    throw new Error("Supabase 서버 설정이 없습니다.");
+  }
+
+  // Cloudinary 삭제가 실패하더라도(이미 지워졌거나 네트워크 이슈 등)
+  // 관리자가 목록에서 항목을 지울 수 있어야 하므로 DB 삭제는 계속 진행한다.
+  try {
+    await deleteImageFromCloudinary(publicId);
+  } catch (err) {
+    console.error("Cloudinary 이미지 삭제 실패:", publicId, err);
+  }
+
+  const { error } = await supabaseAdmin
+    .from("gallery_images")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
 
   revalidatePath("/admin/gallery");
   revalidatePath("/");
