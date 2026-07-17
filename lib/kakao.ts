@@ -126,3 +126,22 @@ export async function shareKakao(config: KakaoShareConfig): Promise<void> {
     },
   });
 }
+
+/**
+ * 카카오 디벨로퍼스 "메시지 템플릿 빌더"로 만든 커스텀 템플릿을 사용해 공유한다.
+ * 템플릿 안에서 %{변수명}으로 지정해둔 부분만 templateArgs로 실행 시점에 채울 수 있고,
+ * 나머지(고정 텍스트/링크 등)는 템플릿에 저장된 값 그대로 나간다.
+ *
+ * 예: templateArgs = { imageUrl: "https://res.cloudinary.com/..." }
+ */
+export async function shareKakaoCustom(
+  templateId: number,
+  templateArgs: Record<string, string>
+): Promise<void> {
+  await loadKakaoShareSdk();
+
+  window.Kakao.Share.sendCustom({
+    templateId,
+    templateArgs,
+  });
+}

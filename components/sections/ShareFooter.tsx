@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
-import { shareKakao } from "@/lib/kakao";
+import { shareKakaoCustom } from "@/lib/kakao";
 import { useToast } from "@/components/providers/ToastProvider";
 
 function KakaoIcon() {
@@ -13,12 +13,6 @@ function KakaoIcon() {
     </svg>
   );
 }
-
-// 카카오톡 공유 미리보기 이미지 비율.
-// imageWidth/imageHeight를 SDK에 함께 넘겨줘야 이 비율 그대로 표시되고,
-// 넘기지 않으면 카카오톡이 자체 템플릿 박스(정사각형에 가까움)로 강제 크롭한다.
-const KAKAO_SHARE_IMAGE_WIDTH = 800;
-const KAKAO_SHARE_IMAGE_HEIGHT = 600;
 
 export default function ShareFooter() {
   const { share, meta, hero, closing } = invitationConfig;
@@ -32,19 +26,13 @@ export default function ShareFooter() {
     if (isSharing) return;
     setIsSharing(true);
     try {
-      const url = getCurrentUrl();
-      await shareKakao({
-        title: share.kakaoTitle,
-        description: share.kakaoDescription,
+      // 커스텀 템플릿(디벨로퍼스 "메시지 템플릿 빌더")을 사용.
+      // 이 템플릿에서 imageUrl만 %{imageUrl} 변수로 열려있고,
+      // 제목/설명/버튼 링크는 템플릿에 고정된 값 그대로 전송됨.
+      await shareKakaoCustom(share.kakaoTemplateId, {
         imageUrl: getCloudinaryUrl(hero.backgroundImagePublicId, {
-          width: KAKAO_SHARE_IMAGE_WIDTH,
-          height: KAKAO_SHARE_IMAGE_HEIGHT,
-          crop: "fill",
-          gravity: "auto",
+          width: 1200,
         }),
-        imageWidth: KAKAO_SHARE_IMAGE_WIDTH,
-        imageHeight: KAKAO_SHARE_IMAGE_HEIGHT,
-        link: { mobileWebUrl: url, webUrl: url },
       });
     } catch (err) {
       console.error("카카오톡 공유 실패:", err);
@@ -92,3 +80,4 @@ export default function ShareFooter() {
     </section>
   );
 }
+

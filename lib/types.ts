@@ -96,6 +96,7 @@ export interface InvitationConfig {
     kakaoDescription: string;
     kakaoImageUrl: string;
     kakaoAppKey: string; // 실제로는 .env에서 가져오되 구조상 위치 표시
+    kakaoTemplateId: number; // 카카오 디벨로퍼스 "메시지 템플릿 빌더"로 만든 커스텀 템플릿 ID
   };
   closing: {
     message: string; // ShareFooter 하단에 노출되는 클로징 문구

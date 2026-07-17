@@ -4,7 +4,7 @@ import type { InvitationConfig } from "@/lib/types";
 // 실제 결혼식 정보가 확정되면 이 파일의 값만 교체하면 전체 청첩장이 업데이트됩니다.
 export const invitationConfig: InvitationConfig = {
   meta: {
-    siteTitle: "재원 ❤ 선영 결혼합니다",
+    siteTitle: "재원🧡선영 결혼합니다",
     siteDescription: "2026년 11월 15일 일요일 오전 10시30분, MJ컨벤션",
     ogImageUrl: "https://res.cloudinary.com/your-cloud/image/upload/wedding/og-image.jpg",
     siteUrl: "https://intellij-claude-vibe-wedding.vercel.app",
@@ -96,10 +96,11 @@ export const invitationConfig: InvitationConfig = {
     ],
   },
   share: {
-    kakaoTitle: "재원 ❤ 선영 결혼합니다",
+    kakaoTitle: "재원🧡선영 결혼합니다",
     kakaoDescription: "2026년 11월 15일 일요일 오전 10시30분, MJ컨벤션",
     kakaoImageUrl: "https://res.cloudinary.com/your-cloud/image/upload/wedding/og-image.jpg",
     kakaoAppKey: "", // process.env.NEXT_PUBLIC_KAKAO_JS_KEY 사용 예정 (lib/kakao.ts에서 처리)
+    kakaoTemplateId: 135431,
   },
   closing: {
     message: "저희의 시작을 함께해주셔서 감사합니다",
