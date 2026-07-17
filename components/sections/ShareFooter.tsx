@@ -14,6 +14,12 @@ function KakaoIcon() {
   );
 }
 
+// 카카오톡 공유 미리보기 이미지 비율.
+// imageWidth/imageHeight를 SDK에 함께 넘겨줘야 이 비율 그대로 표시되고,
+// 넘기지 않으면 카카오톡이 자체 템플릿 박스(정사각형에 가까움)로 강제 크롭한다.
+const KAKAO_SHARE_IMAGE_WIDTH = 800;
+const KAKAO_SHARE_IMAGE_HEIGHT = 600;
+
 export default function ShareFooter() {
   const { share, meta, hero, closing } = invitationConfig;
   const { showToast } = useToast();
@@ -31,10 +37,13 @@ export default function ShareFooter() {
         title: share.kakaoTitle,
         description: share.kakaoDescription,
         imageUrl: getCloudinaryUrl(hero.backgroundImagePublicId, {
-          width: 800,
-          height: 400,
+          width: KAKAO_SHARE_IMAGE_WIDTH,
+          height: KAKAO_SHARE_IMAGE_HEIGHT,
           crop: "fill",
+          gravity: "auto",
         }),
+        imageWidth: KAKAO_SHARE_IMAGE_WIDTH,
+        imageHeight: KAKAO_SHARE_IMAGE_HEIGHT,
         link: { mobileWebUrl: url, webUrl: url },
       });
     } catch (err) {

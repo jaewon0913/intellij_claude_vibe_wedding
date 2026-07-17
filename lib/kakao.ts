@@ -96,6 +96,8 @@ export interface KakaoShareConfig {
   title: string;
   description: string;
   imageUrl: string;
+  imageWidth?: number;
+  imageHeight?: number;
   link: {
     mobileWebUrl: string;
     webUrl: string;
@@ -105,6 +107,9 @@ export interface KakaoShareConfig {
 /**
  * 버튼 클릭 시점에 최초로 SDK를 불러와 초기화한 뒤 공유 시트를 연다.
  * (페이지 로드 시 바로 SDK를 받지 않는 지연 로딩 방식)
+ *
+ * imageWidth/imageHeight를 넘겨주지 않으면 카카오톡이 자체 템플릿 박스(정사각형에 가까움)에
+ * 맞춰 이미지를 강제로 크롭해버리므로, 실제 이미지 비율을 반드시 함께 전달한다.
  */
 export async function shareKakao(config: KakaoShareConfig): Promise<void> {
   await loadKakaoShareSdk();
@@ -115,6 +120,8 @@ export async function shareKakao(config: KakaoShareConfig): Promise<void> {
       title: config.title,
       description: config.description,
       imageUrl: config.imageUrl,
+      imageWidth: config.imageWidth,
+      imageHeight: config.imageHeight,
       link: config.link,
     },
   });

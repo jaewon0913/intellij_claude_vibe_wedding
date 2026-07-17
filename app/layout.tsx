@@ -14,6 +14,7 @@ const ogImageUrl = getCloudinaryUrl(hero.backgroundImagePublicId, {
   width: 1200,
   height: 630,
   crop: "fill",
+  gravity: "auto",
 });
 
 export const metadata: Metadata = {

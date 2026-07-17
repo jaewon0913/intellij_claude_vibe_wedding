@@ -5,6 +5,9 @@ interface CloudinaryOptions {
   width?: number;
   height?: number;
   crop?: "fill" | "fit" | "crop" | "scale";
+  // "auto"로 두면 Cloudinary가 얼굴/피사체를 인식해서 크롭 시 잘리지 않게 함.
+  // width와 height를 둘 다 지정해 실제로 크롭이 일어날 때만 의미가 있음.
+  gravity?: "auto" | "face" | "faces" | "center";
 }
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -13,12 +16,15 @@ export function getCloudinaryUrl(
   publicId: string,
   options: CloudinaryOptions = {}
 ): string {
-  const { width, height, crop = "fill" } = options;
+  const { width, height, crop = "fill", gravity } = options;
 
   const transformations = ["f_auto", "q_auto"];
   if (width) transformations.push(`w_${width}`);
   if (height) transformations.push(`h_${height}`);
   if (width || height) transformations.push(`c_${crop}`);
+  if (gravity && width && height && crop === "fill") {
+    transformations.push(`g_${gravity}`);
+  }
 
   const cloudName = CLOUD_NAME || "demo";
 
