@@ -32,13 +32,18 @@ export default function Invitation() {
           {title}
         </h2>
 
-        <div className="mt-10 space-y-6">
+        <div className="mt-10 space-y-4">
           {paragraphs.map((paragraph, index) => (
             <p
               key={index}
               className="font-serif text-[15px] leading-loose tracking-wide text-ink/90"
             >
-              {paragraph}
+              {paragraph.split("\n").map((line, i, arr) => (
+                <span key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </span>
+              ))}
             </p>
           ))}
         </div>

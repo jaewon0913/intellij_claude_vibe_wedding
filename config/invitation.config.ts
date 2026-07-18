@@ -19,9 +19,8 @@ export const invitationConfig: InvitationConfig = {
   invitationMessage: {
     title: "저희 결혼합니다",
     paragraphs: [
-      "서로를 마주 보던 두 사람이,",
-      "이제 같은 곳을 바라보며 걸어가려 합니다.",
-      "저희 두 사람의 새로운 시작을 축복해 주시면 감사하겠습니다.",
+      "손을 잡고, 발을 맞춰\n마주 보며 키워온 사랑을 바탕으로",
+      "이제는 나란히 서서 같은 내일을 향해 걸어갑니다.\n마주 잡은 손을 놓지 않고 예쁘게 살겠습니다.\n저희의 시작을 함께 축하해 주세요.",
     ],
     groomFamily: { father: "황용각", mother: "한미자", order: "아들", motherDeceased: true },
     brideFamily: { father: "주낙영", mother: "박귀건", order: "딸", motherDeceased: false },
