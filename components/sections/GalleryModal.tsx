@@ -38,6 +38,35 @@ export default function GalleryModal({
     };
   }, []);
 
+  // 모달이 열려있는 동안만 모바일 핀치줌을 막는다.
+  // (사이트 전체를 영구적으로 막으면 접근성에 안 좋으니, 확대 뷰어에서만 잠깐 적용)
+  useEffect(() => {
+    const viewportMeta = document.querySelector('meta[name="viewport"]');
+    const originalContent = viewportMeta?.getAttribute("content") ?? null;
+
+    viewportMeta?.setAttribute(
+      "content",
+      "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    );
+
+    // 일부 브라우저는 viewport meta만으로 핀치 제스처를 완전히 막지 못하므로
+    // 두 손가락 터치(핀치) 자체를 한 번 더 막아준다.
+    const preventPinch = (e: TouchEvent) => {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    };
+    const modalEl = modalRef.current;
+    modalEl?.addEventListener("touchmove", preventPinch, { passive: false });
+
+    return () => {
+      if (originalContent) {
+        viewportMeta?.setAttribute("content", originalContent);
+      }
+      modalEl?.removeEventListener("touchmove", preventPinch);
+    };
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
