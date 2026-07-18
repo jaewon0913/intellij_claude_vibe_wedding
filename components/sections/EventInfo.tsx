@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { invitationConfig } from "@/config/invitation.config";
+import Reveal from "@/components/ui/Reveal";
 import {
   getCalendarGrid,
   getCalendarHeaderText,
@@ -34,8 +35,8 @@ export default function EventInfo() {
   };
 
   return (
-    <section className="bg-paper px-6 py-24 sm:px-10">
-      <div className="mx-auto max-w-md text-center">
+    <section className="bg-paper px-6 py-12 sm:px-10">
+      <Reveal className="mx-auto max-w-md text-center">
         <p className="text-xs tracking-[0.35em] text-accent">WHEN</p>
 
         {/* D-Day 카운터: 초기 렌더에서는 빈 자리만 잡아두어 레이아웃 시프트 방지 */}
@@ -93,7 +94,7 @@ export default function EventInfo() {
             오시는 길 보기 ↓
           </a>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

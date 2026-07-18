@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { invitationConfig } from "@/config/invitation.config";
 import { loadKakaoMapsScript } from "@/lib/kakao";
 import { useToast } from "@/components/providers/ToastProvider";
+import Reveal from "@/components/ui/Reveal";
 
 export default function LocationMap() {
   const { address, venueName, lat, lng, parkingInfo, transitInfo, shuttleInfo } =
@@ -53,8 +54,8 @@ export default function LocationMap() {
   )}&goalx=${lng}&goaly=${lat}`;
 
   return (
-    <section id="location" className="bg-paper px-6 py-24 sm:px-10">
-      <div className="mx-auto max-w-md">
+    <section id="location" className="bg-paper px-6 py-12 sm:px-10">
+      <Reveal className="mx-auto max-w-md">
         <p className="text-center text-xs tracking-[0.35em] text-accent">
           LOCATION
         </p>
@@ -111,7 +112,7 @@ export default function LocationMap() {
             {shuttleInfo && <p>🚌 {shuttleInfo}</p>}
           </div>
         )}
-      </div>
+      </Reveal>
     </section>
   );
 }

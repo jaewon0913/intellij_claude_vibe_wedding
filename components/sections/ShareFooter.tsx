@@ -5,6 +5,7 @@ import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import { shareKakaoCustom } from "@/lib/kakao";
 import { useToast } from "@/components/providers/ToastProvider";
+import Reveal from "@/components/ui/Reveal";
 
 function KakaoIcon() {
   return (
@@ -53,7 +54,7 @@ export default function ShareFooter() {
 
   return (
     <section className="bg-paper px-6 pb-16 pt-8 sm:px-10">
-      <div className="mx-auto max-w-md">
+      <Reveal className="mx-auto max-w-md">
         <div className="flex flex-col gap-2">
           <button
             type="button"
@@ -76,7 +77,7 @@ export default function ShareFooter() {
         <p className="mt-10 text-center text-sm leading-relaxed text-ink-light">
           {closing.message}
         </p>
-      </div>
+      </Reveal>
     </section>
   );
 }

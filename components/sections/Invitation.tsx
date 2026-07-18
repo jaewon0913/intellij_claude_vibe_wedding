@@ -1,5 +1,6 @@
 ﻿import { invitationConfig } from "@/config/invitation.config";
 import ChrysanthemumIcon from "@/components/ui/ChrysanthemumIcon";
+import Reveal from "@/components/ui/Reveal";
 
 function ParentName({
   name,
@@ -24,8 +25,8 @@ export default function Invitation() {
   const { groomName, brideName } = invitationConfig.hero;
 
   return (
-    <section className="bg-paper px-6 py-24 sm:px-10">
-      <div className="mx-auto max-w-md text-center">
+    <section className="bg-paper px-6 py-12 sm:px-10">
+      <Reveal className="mx-auto max-w-md text-center">
         <p className="text-xs tracking-[0.35em] text-accent">💍 WEDDING INVITATION</p>
         <h2 className="mt-4 font-serif text-2xl leading-snug text-ink sm:text-3xl">
           {title}
@@ -83,7 +84,7 @@ export default function Invitation() {
             </span>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

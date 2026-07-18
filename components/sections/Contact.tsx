@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { invitationConfig } from "@/config/invitation.config";
 import type { Person } from "@/lib/types";
+import Reveal from "@/components/ui/Reveal";
 
 function PhoneIcon() {
   return (
@@ -97,8 +98,8 @@ export default function Contact() {
   const people = activeTab === "groom" ? groomSide : brideSide;
 
   return (
-    <section className="bg-paper px-6 py-24 sm:px-10">
-      <div className="mx-auto max-w-md">
+    <section className="bg-paper px-6 py-12 sm:px-10">
+      <Reveal className="mx-auto max-w-md">
         <p className="text-center text-xs tracking-[0.35em] text-accent">
           CONTACT
         </p>
@@ -138,7 +139,7 @@ export default function Contact() {
             <ContactCard key={i} person={person} />
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -6,6 +6,7 @@ import { getGalleryImages } from "@/lib/supabase/queries";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import type { GalleryImage } from "@/lib/types";
 import GalleryModal from "./GalleryModal";
+import Reveal from "@/components/ui/Reveal";
 
 const COLLAPSE_THRESHOLD = 8; // 이보다 많으면 처음엔 일부만 표시
 const INITIAL_COUNT = 6;
@@ -31,7 +32,7 @@ export default function Gallery() {
 
   if (isLoading) {
     return (
-      <section className="bg-paper px-6 py-24 sm:px-10">
+      <section className="bg-paper px-6 py-12 sm:px-10">
         <div className="mx-auto max-w-md text-center text-sm text-ink-light">
           사진을 불러오는 중...
         </div>
@@ -47,8 +48,8 @@ export default function Gallery() {
     : images;
 
   return (
-    <section className="bg-paper px-6 py-24 sm:px-10">
-      <div className="mx-auto max-w-md">
+    <section className="bg-paper px-6 py-12 sm:px-10">
+      <Reveal className="mx-auto max-w-md">
         <p className="text-center text-xs tracking-[0.35em] text-accent">
           GALLERY
         </p>
@@ -90,7 +91,7 @@ export default function Gallery() {
             </button>
           </div>
         )}
-      </div>
+      </Reveal>
 
       {selectedIndex !== null && (
         <GalleryModal

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { invitationConfig } from "@/config/invitation.config";
 import CopyButton from "@/components/ui/CopyButton";
 import type { BankAccount } from "@/lib/types";
+import Reveal from "@/components/ui/Reveal";
 
 function AccountCard({ account }: { account: BankAccount }) {
   return (
@@ -42,8 +43,8 @@ export default function AccountInfo() {
   const { groomSide, brideSide } = invitationConfig.accounts;
 
   return (
-    <section className="bg-paper px-6 py-24 sm:px-10">
-      <div className="mx-auto max-w-md text-center">
+    <section className="bg-paper px-6 py-12 sm:px-10">
+      <Reveal className="mx-auto max-w-md text-center">
         <p className="text-xs tracking-[0.35em] text-accent">GIFT</p>
         <h2 className="mt-4 font-serif text-2xl text-ink">마음 전하실 곳</h2>
         <p className="mt-3 text-sm text-ink-light">
@@ -83,7 +84,7 @@ export default function AccountInfo() {
             </div>
           </div>
         )}
-      </div>
+      </Reveal>
     </section>
   );
 }

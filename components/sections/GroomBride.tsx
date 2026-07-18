@@ -2,6 +2,7 @@ import Image from "next/image";
 import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import type { Person } from "@/lib/types";
+import Reveal from "@/components/ui/Reveal";
 
 // "**텍스트**"를 굵게 렌더링하기 위한 아주 단순한 마크다운 파서
 function renderWithBold(text: string) {
@@ -122,8 +123,8 @@ export default function GroomBride() {
   if (!groom || !bride) return null;
 
   return (
-    <section className="bg-paper px-6 py-24 sm:px-10">
-      <div className="mx-auto max-w-md">
+    <section className="bg-paper px-6 py-12 sm:px-10">
+      <Reveal className="mx-auto max-w-md">
         <p className="text-center text-xs tracking-[0.35em] text-accent">
           GROOM &amp; BRIDE
         </p>
@@ -135,7 +136,7 @@ export default function GroomBride() {
           <ProfileCard person={groom} label="신랑" />
           <ProfileCard person={bride} label="신부" />
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
