@@ -50,7 +50,7 @@ export default function Petals() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-40 overflow-hidden"
+      className="pointer-events-none fixed left-1/2 top-0 z-40 h-screen w-full max-w-[480px] -translate-x-1/2 overflow-hidden"
       aria-hidden="true"
     >
       {petals.map((p) => (

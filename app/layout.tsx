@@ -41,12 +41,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="h-full antialiased">
       <body className="min-h-full bg-ink text-ink">
-        {/* transform을 줘서 이 div를 fixed 자식들(Petals/Toast/모달)의
-            containing block으로 만듦 → 데스크탑에서도 480px 카드 안에서만 떠다님 */}
-        <div
-          className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col bg-paper shadow-2xl"
-          style={{ transform: "translateZ(0)" }}
-        >
+        <div className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col bg-paper shadow-2xl">
           <Petals />
           <ToastProvider>{children}</ToastProvider>
         </div>
