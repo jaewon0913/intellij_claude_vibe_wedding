@@ -48,12 +48,13 @@ export default function AccountInfo() {
         <p className="text-xs tracking-[0.35em] text-accent">GIFT</p>
         <h2 className="mt-4 font-serif text-2xl text-ink">마음 전하실 곳</h2>
         <p className="mt-3 text-sm text-ink-light">
-            멀리서도 축하의 마음을
-            전하고 싶으신 분들을 위해
-            계좌번호를 안내드립니다.
-
-            소중한 축하를 보내주셔서 감사드리며,
-            따뜻한 마음에 깊이 감사드립니다.
+            <br/>
+            멀리서도 축하의 마음을<br/>
+            전하고 싶으신 분들을 위해<br/>
+            계좌번호를 안내드립니다.<br/>
+            <br/>
+            소중한 축하를 보내주셔서 감사드리며,<br/>
+            따뜻한 마음에 깊이 감사드립니다.<br/>
         </p>
 
         <button

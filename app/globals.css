@@ -47,3 +47,31 @@ body {
 .animate-fade-in-up {
   animation: fade-in-up 0.9s ease-out both;
 }
+
+/* 전체 화면에 흩날리는 꽃잎 (components/ui/Petals.tsx에서 사용) */
+@keyframes petal-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate(var(--petal-drift), 55vh) rotate(180deg);
+  }
+  92% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(calc(var(--petal-drift) * -1), 115vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.petal-fall {
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
