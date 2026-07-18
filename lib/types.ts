@@ -79,9 +79,9 @@ export interface InvitationConfig {
     venueName: string;
     lat: number;
     lng: number;
-    parkingInfo?: string;
-    transitInfo?: string;
-    shuttleInfo?: string;
+    parkingInfo?: string[]; // 줄 단위 배열 (배열 항목마다 줄바꿈되어 표시됨)
+    transitInfo?: string[];
+    shuttleInfo?: string[];
   };
   accounts: {
     groomSide: BankAccount[];

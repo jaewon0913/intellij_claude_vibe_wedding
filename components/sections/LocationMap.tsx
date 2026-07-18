@@ -6,6 +6,20 @@ import { loadKakaoMapsScript } from "@/lib/kakao";
 import { useToast } from "@/components/providers/ToastProvider";
 import Reveal from "@/components/ui/Reveal";
 
+function InfoLines({ icon, lines }: { icon: string; lines?: string[] }) {
+  if (!lines || lines.length === 0) return null;
+  return (
+    <div className="flex gap-2 text-left">
+      <span className="shrink-0">{icon}</span>
+      <div className="space-y-0.5">
+        {lines.map((line, i) => (
+          <p key={i}>{line}</p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function LocationMap() {
   const { address, venueName, lat, lng, parkingInfo, transitInfo, shuttleInfo } =
     invitationConfig.location;
@@ -106,10 +120,10 @@ export default function LocationMap() {
         </div>
 
         {(parkingInfo || transitInfo || shuttleInfo) && (
-          <div className="mt-8 space-y-2 border-t border-line pt-6 text-sm text-ink-light">
-            {parkingInfo && <p>🚗 {parkingInfo}</p>}
-            {transitInfo && <p>🚇 {transitInfo}</p>}
-            {shuttleInfo && <p>🚌 {shuttleInfo}</p>}
+          <div className="mt-8 space-y-3 border-t border-line pt-6 text-sm text-ink-light">
+            <InfoLines icon="🚗" lines={parkingInfo} />
+            <InfoLines icon="🚇" lines={transitInfo} />
+            <InfoLines icon="🚌" lines={shuttleInfo} />
           </div>
         )}
       </Reveal>

@@ -40,9 +40,13 @@ export const invitationConfig: InvitationConfig = {
     venueName: "MJ컨벤션",
     lat: 37.4817956,
     lng: 126.7985091,
-    parkingInfo: "건물 주차타워 주차장 이용 (2시간 무료)",
-    transitInfo: "1호선 소사역 1번 출구 도보 5분",
-    shuttleInfo: undefined,
+    parkingInfo: [
+      "네비게이션 입력: 부천시 소사구 소사본동 65-7번지",
+      "서울외곽순환도로(시흥IC) - 소사본3동 - 소사구청 옆",
+      "건물 주차타워 주차장 이용 (2시간 무료)",
+    ],
+    transitInfo: ["1호선 소사역 1번 출구 도보 5분"],
+    shuttleInfo: ["소사구청 삼거리/MJ컨벤션 : 19, 83, 88"],
   },
   accounts: {
     groomSide: [
