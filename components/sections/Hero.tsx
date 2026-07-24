@@ -58,6 +58,11 @@ export default function Hero() {
 
   const showVideo = Boolean(backgroundVideoUrl) && !videoFailed;
 
+  // 영상/사진 원본을 자르지 않고, 위쪽 일부만 화면에 안 보이게 하고 싶을 때 조절하는 값(px).
+  // 컨테이너보다 이 값만큼 위로 더 키워서 렌더링한 뒤 위로 밀어올리는 방식이라
+  // 아래쪽은 그대로 꽉 찬 채 유지되고, 위쪽만 잘려 보인다.
+  const CROP_TOP_PX = 150;
+
   return (
     <section className="relative flex min-h-[100dvh] w-full flex-col items-center justify-end overflow-hidden bg-ink">
       {/* 배경: 비디오가 있으면 항상 비디오를 우선 노출, 로드/재생 실패시에만 이미지로 폴백 */}
@@ -65,31 +70,34 @@ export default function Hero() {
           카카오톡 인앱 브라우저 등에서 배경 영상이 페이지와 함께 리페인트되며
           순간적으로 깨져 보이는(티어링) 현상을 줄인다 */}
       <div className="absolute inset-0 bg-accent-soft [backface-visibility:hidden] [transform:translateZ(0)]">
-        {showVideo ? (
-          <video
-            ref={videoRef}
-            key={backgroundVideoUrl}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={backgroundUrl}
-            onError={() => setVideoFailed(true)}
-            className="h-full w-full object-cover"
-          >
-            <source src={backgroundVideoUrl!} type="video/mp4" />
-          </video>
-        ) : (
-          <Image
-            src={backgroundUrl}
-            alt={`${groomName} ${brideName} 결혼식 대표 사진`}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-        )}
+        {/* 컨테이너보다 CROP_TOP_PX만큼 위로 더 크게 잡아서, 상단이 화면 밖으로 밀려나가게 함 */}
+        <div className="absolute inset-x-0 bottom-0" style={{ top: -CROP_TOP_PX }}>
+          {showVideo ? (
+            <video
+              ref={videoRef}
+              key={backgroundVideoUrl}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster={backgroundUrl}
+              onError={() => setVideoFailed(true)}
+              className="h-full w-full object-cover"
+            >
+              <source src={backgroundVideoUrl!} type="video/mp4" />
+            </video>
+          ) : (
+            <Image
+              src={backgroundUrl}
+              alt={`${groomName} ${brideName} 결혼식 대표 사진`}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+          )}
+        </div>
       </div>
 
       {/* 가독성을 위한 어두운 그라데이션 오버레이 */}
