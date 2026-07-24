@@ -77,8 +77,8 @@ export const invitationConfig: InvitationConfig = {
         phone: "010-9937-5580",
         relation: "신랑",
         mbti: "INFJ",
-        hobby: "신부 생각하기",
-        specialty: "신부 웃게 하기",
+        hobby: "선영이 사진 예쁘게 찍어주기",
+        specialty: "선영이 좋아하는 맛집 찾기",
         icon: "🌳",
         introLines: [
           "항상 든든하고 다정한",

@@ -51,20 +51,21 @@ body {
 /* 전체 화면에 흩날리는 꽃잎 (components/ui/Petals.tsx에서 사용) */
 @keyframes petal-fall {
   0% {
-    transform: translate(0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
     opacity: 0;
   }
   8% {
     opacity: 0.85;
   }
   50% {
-    transform: translate(var(--petal-drift), 55vh) rotate(180deg);
+    transform: translate3d(var(--petal-drift), 55vh, 0) rotate(180deg);
   }
   92% {
     opacity: 0.85;
   }
   100% {
-    transform: translate(calc(var(--petal-drift) * -1), 115vh) rotate(360deg);
+    transform: translate3d(calc(var(--petal-drift) * -1), 115vh, 0)
+      rotate(360deg);
     opacity: 0;
   }
 }
@@ -74,4 +75,5 @@ body {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   will-change: transform, opacity;
+  backface-visibility: hidden;
 }

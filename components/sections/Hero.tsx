@@ -59,9 +59,12 @@ export default function Hero() {
   const showVideo = Boolean(backgroundVideoUrl) && !videoFailed;
 
   return (
-    <section className="relative flex min-h-screen w-full flex-col items-center justify-end overflow-hidden bg-ink">
+    <section className="relative flex min-h-[100dvh] w-full flex-col items-center justify-end overflow-hidden bg-ink">
       {/* 배경: 비디오가 있으면 항상 비디오를 우선 노출, 로드/재생 실패시에만 이미지로 폴백 */}
-      <div className="absolute inset-0 bg-accent-soft">
+      {/* translateZ(0)/backface-visibility로 별도 GPU 레이어를 만들어서, 스크롤 시
+          카카오톡 인앱 브라우저 등에서 배경 영상이 페이지와 함께 리페인트되며
+          순간적으로 깨져 보이는(티어링) 현상을 줄인다 */}
+      <div className="absolute inset-0 bg-accent-soft [backface-visibility:hidden] [transform:translateZ(0)]">
         {showVideo ? (
           <video
             ref={videoRef}
