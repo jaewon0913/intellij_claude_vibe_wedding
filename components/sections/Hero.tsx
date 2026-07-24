@@ -64,7 +64,7 @@ export default function Hero() {
   const CROP_TOP_PX = 150;
 
   return (
-    <section className="relative flex min-h-[100dvh] w-full flex-col items-center justify-end overflow-hidden bg-ink">
+    <section className="relative flex min-h-[100svh] w-full flex-col items-center justify-end overflow-hidden bg-ink">
       {/* 배경: 비디오가 있으면 항상 비디오를 우선 노출, 로드/재생 실패시에만 이미지로 폴백 */}
       {/* translateZ(0)/backface-visibility로 별도 GPU 레이어를 만들어서, 스크롤 시
           카카오톡 인앱 브라우저 등에서 배경 영상이 페이지와 함께 리페인트되며
