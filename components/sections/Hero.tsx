@@ -63,8 +63,36 @@ export default function Hero() {
   // 아래쪽은 그대로 꽉 찬 채 유지되고, 위쪽만 잘려 보인다.
   const CROP_TOP_PX = 150;
 
+  // 카카오톡 인앱 브라우저 등 일부 웹뷰는 svh/dvh 같은 최신 뷰포트 단위를
+  // 온전히 지원하지 않아, 주소창이 접히고 펴질 때마다 화면 비율이 흔들릴 수 있다.
+  // 그래서 window.innerHeight를 "최초 1회만" 읽어 CSS 변수로 고정해두고,
+  // 이후 주소창이 뜨거나 숨겨져도(=세로 크기만 바뀌는 리사이즈) 값을 갱신하지 않는다.
+  // 실제 기기 회전 등 가로 폭이 바뀌는 경우에만 다시 계산한다.
+  useEffect(() => {
+    const setHeroHeight = () => {
+      document.documentElement.style.setProperty(
+        "--hero-vh",
+        `${window.innerHeight}px`
+      );
+    };
+    setHeroHeight();
+
+    let lastWidth = window.innerWidth;
+    const handleResize = () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        setHeroHeight();
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <section className="relative flex min-h-[100svh] w-full flex-col items-center justify-end overflow-hidden bg-ink">
+    <section
+      className="relative flex w-full flex-col items-center justify-end overflow-hidden bg-ink"
+      style={{ minHeight: "var(--hero-vh, 100svh)" }}
+    >
       {/* 배경: 비디오가 있으면 항상 비디오를 우선 노출, 로드/재생 실패시에만 이미지로 폴백 */}
       {/* translateZ(0)/backface-visibility로 별도 GPU 레이어를 만들어서, 스크롤 시
           카카오톡 인앱 브라우저 등에서 배경 영상이 페이지와 함께 리페인트되며
