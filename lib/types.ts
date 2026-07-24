@@ -101,4 +101,9 @@ export interface InvitationConfig {
   closing: {
     message: string; // ShareFooter 하단에 노출되는 클로징 문구
   };
+  bgm?: {
+    publicId?: string; // Cloudinary public_id (오디오는 /video/upload/ 경로로 처리됨)
+    localUrl?: string; // 로컬(/public) 경로 또는 외부 URL. 설정 시 Cloudinary보다 우선 사용됨
+    title?: string; // 재생 버튼 접근성 라벨 등에 활용 (예: "축가 - 곡명")
+  };
 }

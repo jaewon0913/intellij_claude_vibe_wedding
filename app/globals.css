@@ -77,3 +77,17 @@ body {
   will-change: transform, opacity;
   backface-visibility: hidden;
 }
+
+/* BGM 버튼 재생 중 음표 아이콘이 천천히 회전 (components/ui/BgmPlayer.tsx) */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}

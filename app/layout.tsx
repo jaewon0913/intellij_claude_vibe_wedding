@@ -3,6 +3,7 @@ import { ToastProvider } from "@/components/providers/ToastProvider";
 import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import Petals from "@/components/ui/Petals";
+import BgmPlayer from "@/components/ui/BgmPlayer";
 import "pretendard/dist/web/variable/pretendardvariable.css";
 import "@fontsource/gowun-batang/400.css";
 import "@fontsource/gowun-batang/700.css";
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body className="min-h-full bg-ink text-ink">
         <div className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col bg-paper shadow-2xl">
           <Petals />
+          <BgmPlayer />
           <ToastProvider>{children}</ToastProvider>
         </div>
       </body>

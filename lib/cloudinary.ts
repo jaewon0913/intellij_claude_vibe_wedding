@@ -62,3 +62,12 @@ export function getCloudinaryVideoUrl(
     ","
   )}/${publicId}.${format}`;
 }
+
+// 오디오(BGM)도 Cloudinary에서는 비디오 파이프라인(/video/upload/)으로 처리됨
+export function getCloudinaryAudioUrl(
+  publicId: string,
+  format: "mp3" | "m4a" = "mp3"
+): string {
+  const cloudName = CLOUD_NAME || "demo";
+  return `https://res.cloudinary.com/${cloudName}/video/upload/q_auto/${publicId}.${format}`;
+}
