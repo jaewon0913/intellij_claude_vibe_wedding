@@ -124,6 +124,6 @@ export const invitationConfig: InvitationConfig = {
   },
   bgm: {
     // Cloudinary에 음원(mp3) 업로드 후 public_id만 넣으면 자동으로 재생됩니다.
-    // publicId: "wedding/bgm_main",
+    publicId: "mixkit-wedding-harp-672_mh7itx",
   },
 };
