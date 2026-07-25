@@ -75,13 +75,13 @@ export default function BgmPlayer() {
       <audio ref={audioRef} src={bgmUrl} loop preload="auto" className="hidden" />
 
       {/* 480px 모바일 프레임 폭 안에 버튼이 위치하도록, Petals와 같은 방식으로 폭을 제한 */}
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center">
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center">
         <div className="relative w-full max-w-[480px]">
           <button
             type="button"
             onClick={toggle}
             aria-label={isPlaying ? "배경음악 끄기" : "배경음악 켜기"}
-            className="pointer-events-auto absolute bottom-6 right-6 flex h-11 w-11 items-center justify-center rounded-full bg-ink/80 text-white shadow-lg backdrop-blur transition hover:bg-ink"
+            className="pointer-events-auto absolute right-6 top-6 flex h-11 w-11 items-center justify-center rounded-full bg-ink/80 text-white shadow-lg backdrop-blur transition hover:bg-ink"
           >
             <NoteIcon spinning={isPlaying} />
           </button>

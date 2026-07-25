@@ -8,8 +8,8 @@ import type { GalleryImage } from "@/lib/types";
 import GalleryModal from "./GalleryModal";
 import Reveal from "@/components/ui/Reveal";
 
-const COLLAPSE_THRESHOLD = 8; // 이보다 많으면 처음엔 일부만 표시
-const INITIAL_COUNT = 6;
+const COLLAPSE_THRESHOLD = 9; // 이보다 많으면 처음엔 일부만 표시
+const INITIAL_COUNT = 9;
 
 export default function Gallery() {
   const [images, setImages] = useState<GalleryImage[]>([]);

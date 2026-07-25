@@ -61,13 +61,13 @@ export const invitationConfig: InvitationConfig = {
   },
   accounts: {
     groomSide: [
-      { bank: "국민은행", accountNumber: "123456-78-901234", holder: "황재원" },
-      { bank: "하나은행", accountNumber: "123456-78-901234", holder: "황용각" },
+      { bank: "국민은행", accountNumber: "123456-01-389297", holder: "황재원" },
+      { bank: "국민은행", accountNumber: "123456-78-901234", holder: "황용각" },
     ],
     brideSide: [
-      { bank: "신한은행", accountNumber: "110-123-456789", holder: "주선영" },
       { bank: "하나은행", accountNumber: "110-123-456789", holder: "주선영" },
-      { bank: "우리은행", accountNumber: "110-123-456789", holder: "주선영" },
+      { bank: "하나은행", accountNumber: "110-123-456789", holder: "주낙영" },
+      { bank: "우리은행", accountNumber: "110-123-456789", holder: "박귀건" },
     ],
   },
   contacts: {
@@ -97,8 +97,8 @@ export const invitationConfig: InvitationConfig = {
         phone: "010-9855-7030",
         relation: "신부",
         mbti: "ENFP",
-        hobby: "재원이 놀리기",
-        specialty: "재원이 웃게 하기",
+        hobby: "재원이만의 연예인 되기",
+        specialty: "재원이 행복하게 웃게 하기",
         icon: "☀️",
         introLines: [
           "언제나 재원이의",
