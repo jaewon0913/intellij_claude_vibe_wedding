@@ -27,6 +27,9 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   // 실제로 영상 로드/재생이 실패했을 때만 이미지로 폴백 (기본은 항상 비디오 우선)
   const [videoFailed, setVideoFailed] = useState(false);
+  // 저전력 모드 등으로 자동재생 자체가 막힌 경우, 사용자가 직접 눌러서
+  // 재생을 시작할 수 있도록 안내 버튼을 보여줄지 여부
+  const [needsTapToPlay, setNeedsTapToPlay] = useState(false);
 
   useEffect(() => {
     if (!backgroundVideoUrl) return;
@@ -39,22 +42,37 @@ export default function Hero() {
 
     const tryPlay = () => {
       video.play().catch(() => {
-        // 저전력 모드 등으로 자동재생이 막힌 경우 조용히 무시.
-        // 데이터 로드 완료/탭 복귀 시 재시도하므로 대부분 곧 재생됨.
+        // 저전력 모드 등 OS 정책으로 자동재생이 막힌 경우: 코드로는 우회할 수 없으므로
+        // 사용자가 직접 탭해서 재생할 수 있도록 안내 버튼을 띄운다.
+        setNeedsTapToPlay(true);
       });
     };
+
+    const handlePlaying = () => setNeedsTapToPlay(false);
 
     tryPlay();
     video.addEventListener("loadeddata", tryPlay);
     video.addEventListener("canplay", tryPlay);
+    video.addEventListener("playing", handlePlaying);
     document.addEventListener("visibilitychange", tryPlay);
 
     return () => {
       video.removeEventListener("loadeddata", tryPlay);
       video.removeEventListener("canplay", tryPlay);
+      video.removeEventListener("playing", handlePlaying);
       document.removeEventListener("visibilitychange", tryPlay);
     };
   }, [backgroundVideoUrl]);
+
+  const handleTapToPlay = () => {
+    videoRef.current
+      ?.play()
+      .then(() => setNeedsTapToPlay(false))
+      .catch(() => {
+        // 사용자가 직접 누른 동작이므로 거의 항상 성공하지만,
+        // 혹시 또 실패하면 버튼을 계속 띄워둔 채로 둔다.
+      });
+  };
 
   const showVideo = Boolean(backgroundVideoUrl) && !videoFailed;
 
@@ -130,6 +148,22 @@ export default function Hero() {
 
       {/* 가독성을 위한 어두운 그라데이션 오버레이 */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
+
+      {/* 저전력 모드 등으로 자동재생이 막혔을 때: 탭하면 바로 재생되는 버튼 */}
+      {showVideo && needsTapToPlay && (
+        <button
+          type="button"
+          onClick={handleTapToPlay}
+          aria-label="영상 재생하기"
+          className="absolute inset-0 z-20 flex items-center justify-center"
+        >
+          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-ink shadow-lg backdrop-blur transition hover:bg-white">
+            <svg viewBox="0 0 24 24" fill="currentColor" className="ml-1 h-6 w-6">
+              <path d="M8 5v14l11-7Z" />
+            </svg>
+          </span>
+        </button>
+      )}
 
       {/* 본문 */}
       <div className="relative z-10 flex flex-col items-center px-6 pb-24 text-center text-white">
