@@ -83,8 +83,8 @@ export const invitationConfig: InvitationConfig = {
         introLines: [
           "언제나 선영이의",
           "**가장 든든한 남편**이 되겠습니다.",
-          "평생 예쁜 순간은 담아주고,",
-          "맛있는 행복을 찾아다닐게요.",
+          "소중한 순간들을 함께 담아내며",
+          "늘 달콤한 행복을 선물할게요.",
         ],
         photoPublicId: "재원_어린시절_vjojq2",
       },
@@ -103,8 +103,8 @@ export const invitationConfig: InvitationConfig = {
         introLines: [
           "언제나 재원이의",
           "**가장 따뜻한 아내**가 되겠습니다.",
-          "평생 웃음이 끊이지 않는",
-          "우리를 만들어갈게요.",
+          "마주 보는 얼굴에 웃음만 가득하도록",
+          "늘 다정하게 곁을 지킬게요.",
         ],
         photoPublicId: "선영_어린시절_hkkqab",
       },
