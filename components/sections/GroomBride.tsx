@@ -3,6 +3,7 @@ import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import type { Person } from "@/lib/types";
 import Reveal from "@/components/ui/Reveal";
+import FitOneLine from "@/components/ui/FitOneLine";
 
 // "**텍스트**"를 굵게 렌더링하기 위한 아주 단순한 마크다운 파서
 function renderWithBold(text: string) {
@@ -65,7 +66,7 @@ function ProfileCard({ person, label }: ProfileCardProps) {
       {person.introLines && person.introLines.length > 0 && (
         <div className="mt-3 space-y-1 text-xs leading-relaxed text-ink-light">
           {person.introLines.map((line, i) => (
-            <p key={i}>{renderWithBold(line)}</p>
+            <FitOneLine key={i}>{renderWithBold(line)}</FitOneLine>
           ))}
         </div>
       )}
