@@ -15,17 +15,18 @@ interface PetalConfig {
   color: string;
 }
 
-const PETAL_COLORS = ["#e0596b", "#e8798a", "#d64550", "#ef98a4"];
-const PETAL_COUNT = 16;
+// 사이트 톤(따뜻한 브런치 베이지/캐러멜 팔레트)에 맞춘 은은한 색상
+const PETAL_COLORS = ["#c98f7c", "#d9b8a3", "#a9774f", "#e0c4a8"];
+const PETAL_COUNT = 12;
 
 function createPetals(): PetalConfig[] {
   return Array.from({ length: PETAL_COUNT }).map((_, i) => ({
     id: i,
     left: Math.random() * 100,
-    size: 10 + Math.random() * 10,
-    duration: 9 + Math.random() * 8,
-    delay: Math.random() * 12,
-    drift: 30 + Math.random() * 50,
+    size: 9 + Math.random() * 8,
+    duration: 10 + Math.random() * 9,
+    delay: Math.random() * 14,
+    drift: 25 + Math.random() * 45,
     color: PETAL_COLORS[i % PETAL_COLORS.length],
   }));
 }
@@ -33,7 +34,8 @@ function createPetals(): PetalConfig[] {
 function PetalShape({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 20 28" className="h-full w-full" fill={color}>
-      <path d="M10 0C14 6 20 10 10 28C0 10 6 6 10 0Z" />
+      {/* 더 둥글고 부드러운 실루엣의 꽃잎 */}
+      <path d="M10 2C15 2 18 9 15 16C13 21 10 26 10 26C10 26 7 21 5 16C2 9 5 2 10 2Z" />
     </svg>
   );
 }
