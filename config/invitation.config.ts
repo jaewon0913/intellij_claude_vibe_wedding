@@ -48,7 +48,8 @@ export const invitationConfig: InvitationConfig = {
     ],
     transitInfo: [
         "지하철 이용 시",
-        "1호선/서해선 소사역 1번 출구 도보 5분"
+        "1호선/서해선 소사역 1번 출구 도보 5분",
+        "※ 1호선은 급행 미정차 구간입니다."
     ],
     shuttleInfo: [
         "버스 이용 시",
@@ -61,13 +62,13 @@ export const invitationConfig: InvitationConfig = {
   },
   accounts: {
     groomSide: [
-      { bank: "국민은행", accountNumber: "123456-01-389297", holder: "황재원" },
-      { bank: "국민은행", accountNumber: "123456-78-901234", holder: "황용각" },
+      { bank: "국민은행", accountNumber: "656502-01-389297", holder: "황재원" },
+      { bank: "국민은행", accountNumber: "659425-01-052627", holder: "황용각" },
     ],
     brideSide: [
-      { bank: "하나은행", accountNumber: "110-123-456789", holder: "주선영" },
-      { bank: "하나은행", accountNumber: "110-123-456789", holder: "주낙영" },
-      { bank: "우리은행", accountNumber: "110-123-456789", holder: "박귀건" },
+      { bank: "하나은행", accountNumber: "748-911084-19807", holder: "주선영" },
+      { bank: "하나은행", accountNumber: "243-910062-32507", holder: "주낙영" },
+      { bank: "우리은행", accountNumber: "", holder: "박귀건" },
     ],
   },
   contacts: {

@@ -11,7 +11,8 @@ function NoteIcon({ spinning }: { spinning: boolean }) {
       fill="currentColor"
       className={`h-4 w-4 ${spinning ? "animate-spin-slow" : ""}`}
     >
-      <path d="M9 17V4.5a1 1 0 0 1 1.2-.98l8 1.6A1 1 0 0 1 19 6.1V17a3 3 0 1 1-2-2.83V7.62l-6-1.2v9.6A3 3 0 1 1 9 17Z" />
+      {/* 8분음표(홑음표+깃발) */}
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6Z" />
     </svg>
   );
 }
