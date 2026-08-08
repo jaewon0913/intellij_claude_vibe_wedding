@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ToastProvider } from "@/components/providers/ToastProvider";
 import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
+import { getSiteSettings } from "@/lib/supabase/queries";
 import Petals from "@/components/ui/Petals";
 import BgmPlayer from "@/components/ui/BgmPlayer";
 import "pretendard/dist/web/variable/pretendardvariable.css";
@@ -34,16 +35,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 재배포 없이 관리자 페이지에서 즉시 켜고 끌 수 있도록, 매 요청마다 최신 설정을 읽는다.
+  const { petalsEnabled } = await getSiteSettings();
+
   return (
     <html lang="ko" className="h-full antialiased">
       <body className="min-h-full bg-ink text-ink">
         <div className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col bg-paper shadow-2xl">
-          <Petals />
+          {petalsEnabled && <Petals />}
           <BgmPlayer />
           <ToastProvider>{children}</ToastProvider>
         </div>

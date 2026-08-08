@@ -64,8 +64,8 @@ export const invitationConfig: InvitationConfig = {
     ],
     brideSide: [
       { bank: "하나은행", accountNumber: "748-911084-19807", holder: "주선영" },
-      { bank: "하나은행", accountNumber: "243-910062-32507", holder: "주낙영/박귀건" },
-      // { bank: "우리은행", accountNumber: "", holder: "박귀건" },
+      { bank: "하나은행", accountNumber: "243-910062-32507", holder: "주낙영" },
+      { bank: "하나은행", accountNumber: "311-890055-83007", holder: "박귀건" },
     ],
   },
   contacts: {
@@ -106,8 +106,8 @@ export const invitationConfig: InvitationConfig = {
         ],
         photoPublicId: "선영_어린시절_hkkqab",
       },
-      { name: "주낙영", phone: "010-5555-6666", relation: "신부 아버지" },
-      { name: "박귀건", phone: "010-7777-8888", relation: "신부 어머니" },
+      { name: "주낙영", phone: "010-2448-3592", relation: "신부 아버지" },
+      { name: "박귀건", phone: "010-3359-5492", relation: "신부 어머니" },
     ],
   },
   share: {

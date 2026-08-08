@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { logout } from "./actions";
+import { getSiteSettings } from "@/lib/supabase/queries";
+import PetalsToggle from "./PetalsToggle";
 
-export default function AdminDashboardPage() {
+export const dynamic = "force-dynamic";
+
+export default async function AdminDashboardPage() {
+  const { petalsEnabled } = await getSiteSettings();
+
   return (
     <div className="min-h-screen bg-paper px-6 py-10">
       <div className="mx-auto max-w-md">
@@ -23,6 +29,8 @@ export default function AdminDashboardPage() {
         >
           갤러리 사진 관리 →
         </Link>
+
+        <PetalsToggle initialEnabled={petalsEnabled} />
       </div>
     </div>
   );
