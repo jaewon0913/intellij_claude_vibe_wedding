@@ -70,47 +70,6 @@ function ProfileCard({ person, label }: ProfileCardProps) {
           ))}
         </div>
       )}
-
-      <div className="mt-5 flex items-center gap-2">
-        <a
-          href={`tel:${person.phone}`}
-          aria-label={`${person.name}에게 전화`}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink-light transition hover:border-accent hover:text-accent"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.5}
-            className="h-4 w-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3 5.5C3 4.67 3.67 4 4.5 4H8l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3.5c0 .83-.67 1.5-1.5 1.5C9.4 20 3 13.6 3 5.5Z"
-            />
-          </svg>
-        </a>
-        <a
-          href={`sms:${person.phone}`}
-          aria-label={`${person.name}에게 문자`}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink-light transition hover:border-accent hover:text-accent"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.5}
-            className="h-4 w-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4 5h16v10H8l-4 4V5Z"
-            />
-          </svg>
-        </a>
-      </div>
     </div>
   );
 }
