@@ -15,8 +15,8 @@ interface PetalConfig {
   color: string;
 }
 
-// 녹차(말차) 계열의 은은한 색상
-const PETAL_COLORS = ["#8a9a5b", "#a3b18a", "#6b8e5a", "#c4d6a0"];
+// 선명한 빨강/핑크 계열
+const PETAL_COLORS = ["#e0596b", "#e8798a", "#d64550", "#ef98a4"];
 const PETAL_COUNT = 12;
 
 function createPetals(): PetalConfig[] {
