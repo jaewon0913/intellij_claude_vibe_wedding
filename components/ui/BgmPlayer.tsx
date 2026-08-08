@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryAudioUrl } from "@/lib/cloudinary";
 
@@ -18,9 +19,14 @@ function NoteIcon({ spinning }: { spinning: boolean }) {
 }
 
 export default function BgmPlayer() {
+  const pathname = usePathname();
+  // 관리자 화면(/admin/**)에서는 BGM 자체가 노출/재생되지 않도록 함
+  const isAdminRoute = pathname?.startsWith("/admin") ?? false;
+
   const { bgm } = invitationConfig;
-  const bgmUrl =
-    bgm?.localUrl ?? (bgm?.publicId ? getCloudinaryAudioUrl(bgm.publicId) : null);
+  const bgmUrl = isAdminRoute
+    ? null
+    : bgm?.localUrl ?? (bgm?.publicId ? getCloudinaryAudioUrl(bgm.publicId) : null);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
