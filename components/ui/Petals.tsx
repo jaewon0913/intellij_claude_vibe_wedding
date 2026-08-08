@@ -15,8 +15,8 @@ interface PetalConfig {
   color: string;
 }
 
-// 사이트 톤(따뜻한 브런치 베이지/캐러멜 팔레트)에 맞춘 은은한 색상
-const PETAL_COLORS = ["#c98f7c", "#d9b8a3", "#a9774f", "#e0c4a8"];
+// 녹차(말차) 계열의 은은한 색상
+const PETAL_COLORS = ["#8a9a5b", "#a3b18a", "#6b8e5a", "#c4d6a0"];
 const PETAL_COUNT = 12;
 
 function createPetals(): PetalConfig[] {
