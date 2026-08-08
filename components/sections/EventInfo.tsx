@@ -25,7 +25,7 @@ export default function EventInfo() {
 
   const weeks = getCalendarGrid(date);
   const headerText = getCalendarHeaderText(date);
-  const dateTimeText = formatEventDateTime(date, time);
+  const { datePart, timePart } = formatEventDateTime(date, time);
 
   const scrollToLocation = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -79,7 +79,9 @@ export default function EventInfo() {
         </div>
 
         <p className="mt-10 font-serif text-xl leading-relaxed text-ink sm:text-2xl">
-          {dateTimeText}
+          {datePart}
+          <br />
+          {timePart}
         </p>
 
         <div className="mt-8 border-t border-line pt-6">

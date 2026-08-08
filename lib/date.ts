@@ -67,8 +67,11 @@ export function getDDayText(isoDate: string): string {
 
 const WEEKDAY_KO = ["일", "월", "화", "수", "목", "금", "토"];
 
-/** 예: "2026년 11월 15일 일요일 오전 10시 30분" */
-export function formatEventDateTime(isoDate: string, time: string): string {
+/** 예: { datePart: "2026년 11월 15일 일요일", timePart: "오전 10시 30분" } */
+export function formatEventDateTime(
+  isoDate: string,
+  time: string
+): { datePart: string; timePart: string } {
   const date = new Date(isoDate);
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -83,5 +86,8 @@ export function formatEventDateTime(isoDate: string, time: string): string {
   const displayHour = hour % 12 === 0 ? 12 : hour % 12;
   const minuteText = minute === 0 ? "" : ` ${minute}분`;
 
-  return `${year}년 ${month}월 ${day}일 ${weekday}요일 ${period} ${displayHour}시${minuteText}`;
+  return {
+    datePart: `${year}년 ${month}월 ${day}일 ${weekday}요일`,
+    timePart: `${period} ${displayHour}시${minuteText}`,
+  };
 }
