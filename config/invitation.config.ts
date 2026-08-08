@@ -67,8 +67,8 @@ export const invitationConfig: InvitationConfig = {
     ],
     brideSide: [
       { bank: "하나은행", accountNumber: "748-911084-19807", holder: "주선영" },
-      { bank: "하나은행", accountNumber: "243-910062-32507", holder: "주낙영" },
-      { bank: "우리은행", accountNumber: "", holder: "박귀건" },
+      { bank: "하나은행", accountNumber: "243-910062-32507", holder: "주낙영/박귀건" },
+      // { bank: "우리은행", accountNumber: "", holder: "박귀건" },
     ],
   },
   contacts: {

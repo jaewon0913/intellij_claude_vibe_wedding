@@ -6,12 +6,21 @@ import { loadKakaoMapsScript } from "@/lib/kakao";
 import { useToast } from "@/components/providers/ToastProvider";
 import Reveal from "@/components/ui/Reveal";
 
-function InfoLines({ icon, lines }: { icon: string; lines?: string[] }) {
+function InfoLines({
+  label,
+  icon,
+  lines,
+}: {
+  label: string;
+  icon: string;
+  lines?: string[];
+}) {
   if (!lines || lines.length === 0) return null;
   return (
     <div className="flex gap-2 text-left">
       <span className="shrink-0">{icon}</span>
       <div className="space-y-0.5">
+        <p className="font-semibold text-ink">{label}</p>
         {lines.map((line, i) => (
           <p key={i}>{line}</p>
         ))}
@@ -121,9 +130,9 @@ export default function LocationMap() {
 
         {(parkingInfo || transitInfo || shuttleInfo) && (
           <div className="mt-8 space-y-3 border-t border-line pt-6 text-sm text-ink-light">
-            <InfoLines icon="🚗" lines={parkingInfo} />
-            <InfoLines icon="🚇" lines={transitInfo} />
-            <InfoLines icon="🚌" lines={shuttleInfo} />
+            <InfoLines label="자가용 이용 시" icon="🚗" lines={parkingInfo} />
+            <InfoLines label="지하철 이용 시" icon="🚇" lines={transitInfo} />
+            <InfoLines label="버스 이용 시" icon="🚌" lines={shuttleInfo} />
           </div>
         )}
       </Reveal>
