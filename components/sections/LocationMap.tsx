@@ -130,7 +130,7 @@ export default function LocationMap() {
 
         {(parkingInfo || transitInfo || shuttleInfo) && (
           <div className="mt-8 rounded-2xl border border-line p-5">
-            <p className="text-center text-xs font-semibold tracking-widest text-accent">
+            <p className="text-center font-serif text-2xl text-ink">
               교통 안내
             </p>
             <div className="mt-4 space-y-3 text-sm text-ink-light">
