@@ -24,7 +24,7 @@ export const invitationConfig: InvitationConfig = {
       "마주 잡은 손을 놓지 않고 예쁘게 살겠습니다.\n저희의 시작을 함께 축하해 주세요.",
     ],
     groomFamily: { father: "황용각", mother: "한미자", order: "아들", motherDeceased: true },
-    brideFamily: { father: "주낙영", mother: "박귀건", order: "딸", motherDeceased: false },
+    brideFamily: { father: "주낙영", mother: "박귀연", order: "딸", motherDeceased: false },
   },
   eventInfo: {
     date: "2026-11-15",
@@ -65,7 +65,7 @@ export const invitationConfig: InvitationConfig = {
     brideSide: [
       { bank: "하나은행", accountNumber: "748-911084-19807", holder: "주선영" },
       { bank: "하나은행", accountNumber: "243-910062-32507", holder: "주낙영" },
-      { bank: "하나은행", accountNumber: "311-890055-83007", holder: "박귀건" },
+      { bank: "하나은행", accountNumber: "311-890055-83007", holder: "박귀연" },
     ],
   },
   contacts: {
@@ -107,7 +107,7 @@ export const invitationConfig: InvitationConfig = {
         photoPublicId: "선영_어린시절_hkkqab",
       },
       { name: "주낙영", phone: "010-2448-3592", relation: "신부 아버지" },
-      { name: "박귀건", phone: "010-3359-5492", relation: "신부 어머니" },
+      { name: "박귀연", phone: "010-3359-5492", relation: "신부 어머니" },
     ],
   },
   share: {

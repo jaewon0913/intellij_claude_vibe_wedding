@@ -129,10 +129,15 @@ export default function LocationMap() {
         </div>
 
         {(parkingInfo || transitInfo || shuttleInfo) && (
-          <div className="mt-8 space-y-3 border-t border-line pt-6 text-sm text-ink-light">
-            <InfoLines label="자가용 이용 시" icon="🚗" lines={parkingInfo} />
-            <InfoLines label="지하철 이용 시" icon="🚇" lines={transitInfo} />
-            <InfoLines label="버스 이용 시" icon="🚌" lines={shuttleInfo} />
+          <div className="mt-8 rounded-2xl border border-line p-5">
+            <p className="text-center text-xs font-semibold tracking-widest text-accent">
+              교통 안내
+            </p>
+            <div className="mt-4 space-y-3 text-sm text-ink-light">
+              <InfoLines label="자가용 이용 시" icon="🚗" lines={parkingInfo} />
+              <InfoLines label="지하철 이용 시" icon="🚇" lines={transitInfo} />
+              <InfoLines label="버스 이용 시" icon="🚌" lines={shuttleInfo} />
+            </div>
           </div>
         )}
       </Reveal>
