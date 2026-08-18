@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { compressImageIfNeeded } from "@/lib/image-compress";
 
 export default function UploadForm() {
   const router = useRouter();
@@ -18,37 +19,50 @@ export default function UploadForm() {
       return;
     }
 
-    const formData = new FormData();
-    Array.from(files).forEach((file) => formData.append("photos", file));
-
+    const fileList = Array.from(files);
     setIsUploading(true);
     setMessage(null);
 
-    try {
-      const res = await fetch("/api/admin/gallery/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
+    let uploadedCount = 0;
+    let failedCount = 0;
 
-      if (!res.ok) {
-        setMessage(data.error ?? "업로드에 실패했습니다.");
-      } else {
-        const failedCount = data.failed?.length ?? 0;
-        setMessage(
-          `${data.uploaded.length}장 업로드 완료${
-            failedCount > 0 ? `, ${failedCount}장 실패` : ""
-          }`
-        );
-        if (inputRef.current) inputRef.current.value = "";
-        router.refresh();
+    // 여러 장을 한 요청에 묶으면 압축해도 합산 용량이 Vercel 함수의
+    // 요청 본문 한도(4.5MB)를 넘을 수 있어서, 한 장씩 순차로 업로드한다.
+    for (let i = 0; i < fileList.length; i++) {
+      const originalFile = fileList[i];
+      setMessage(`업로드 중... (${i + 1}/${fileList.length})`);
+
+      try {
+        const fileToUpload = await compressImageIfNeeded(originalFile);
+
+        const formData = new FormData();
+        formData.append("photos", fileToUpload);
+
+        const res = await fetch("/api/admin/gallery/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+
+        if (!res.ok || (data.failed && data.failed.length > 0)) {
+          failedCount += 1;
+        } else {
+          uploadedCount += 1;
+        }
+      } catch (err) {
+        console.error("업로드 실패:", originalFile.name, err);
+        failedCount += 1;
       }
-    } catch (err) {
-      console.error("업로드 요청 실패:", err);
-      setMessage("업로드 중 오류가 발생했습니다.");
-    } finally {
-      setIsUploading(false);
     }
+
+    setMessage(
+      `${uploadedCount}장 업로드 완료${
+        failedCount > 0 ? `, ${failedCount}장 실패` : ""
+      }`
+    );
+    if (inputRef.current) inputRef.current.value = "";
+    setIsUploading(false);
+    router.refresh();
   };
 
   return (
@@ -70,6 +84,9 @@ export default function UploadForm() {
       {message && (
         <p className="text-center text-xs text-ink-light">{message}</p>
       )}
+      <p className="text-center text-[11px] text-ink-light">
+        4MB가 넘는 사진은 자동으로 리사이즈/압축돼서 업로드됩니다.
+      </p>
     </form>
   );
 }
