@@ -95,7 +95,7 @@ export default function Gallery() {
 
       {selectedIndex !== null && (
         <GalleryModal
-          images={visibleImages}
+          images={images}
           initialIndex={selectedIndex}
           onClose={() => setSelectedIndex(null)}
         />
