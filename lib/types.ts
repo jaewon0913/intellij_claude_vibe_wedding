@@ -100,6 +100,7 @@ export interface InvitationConfig {
   };
   closing: {
     message: string; // ShareFooter 하단에 노출되는 클로징 문구
+    imagePublicId?: string; // 설정 시 링크 복사 버튼과 클로징 문구 사이에 이미지 노출
   };
   bgm?: {
     publicId?: string; // Cloudinary public_id (오디오는 /video/upload/ 경로로 처리됨)

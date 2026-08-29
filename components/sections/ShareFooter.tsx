@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import { shareKakaoCustom } from "@/lib/kakao";
@@ -73,6 +74,22 @@ export default function ShareFooter() {
             링크 복사
           </button>
         </div>
+
+        {closing.imagePublicId && (
+          <div className="relative mx-auto mt-10 aspect-square w-full max-w-[280px] overflow-hidden rounded-2xl">
+            <Image
+              src={getCloudinaryUrl(closing.imagePublicId, {
+                width: 560,
+                height: 560,
+                crop: "fill",
+              })}
+              alt="마지막 인사 사진"
+              fill
+              sizes="(max-width: 640px) 70vw, 280px"
+              className="object-cover"
+            />
+          </div>
+        )}
 
         <p className="mt-10 text-center text-sm leading-relaxed text-ink-light">
           {closing.message}
