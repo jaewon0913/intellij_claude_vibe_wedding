@@ -95,7 +95,7 @@ export default function ShareFooter({
           </div>
         )}
 
-        <p className="mt-10 text-center text-sm leading-relaxed text-ink-light">
+        <p className="mt-10 text-center text-base font-semibold leading-relaxed text-ink">
           {closing.message}
         </p>
       </Reveal>
