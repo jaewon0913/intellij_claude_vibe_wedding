@@ -42,3 +42,23 @@ export async function setPetalsEnabled(enabled: boolean) {
   revalidatePath("/");
   revalidatePath("/admin");
 }
+
+export async function setClosingImageEnabled(enabled: boolean) {
+  await assertAuthorized();
+
+  if (!supabaseAdmin) {
+    throw new Error("Supabase 서버 설정이 없습니다.");
+  }
+
+  const { error } = await supabaseAdmin
+    .from("site_settings")
+    .update({ closing_image_enabled: enabled })
+    .eq("id", 1);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+}

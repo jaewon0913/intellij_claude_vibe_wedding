@@ -119,6 +119,7 @@ export const invitationConfig: InvitationConfig = {
   },
   closing: {
     message: "저희의 시작을 함께해주셔서 감사합니다",
+    imagePublicId: "footer_e3vwir"
   },
   bgm: {
     // Cloudinary에 음원(mp3) 업로드 후 public_id만 넣으면 자동으로 재생됩니다.

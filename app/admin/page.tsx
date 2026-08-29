@@ -2,11 +2,12 @@ import Link from "next/link";
 import { logout } from "./actions";
 import { getSiteSettings } from "@/lib/supabase/queries";
 import PetalsToggle from "./PetalsToggle";
+import ClosingImageToggle from "./ClosingImageToggle";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
-  const { petalsEnabled } = await getSiteSettings();
+  const { petalsEnabled, closingImageEnabled } = await getSiteSettings();
 
   return (
     <div className="min-h-screen bg-paper px-6 py-10">
@@ -31,6 +32,7 @@ export default async function AdminDashboardPage() {
         </Link>
 
         <PetalsToggle initialEnabled={petalsEnabled} />
+        <ClosingImageToggle initialEnabled={closingImageEnabled} />
       </div>
     </div>
   );

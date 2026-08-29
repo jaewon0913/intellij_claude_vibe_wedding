@@ -16,7 +16,11 @@ function KakaoIcon() {
   );
 }
 
-export default function ShareFooter() {
+export default function ShareFooter({
+  closingImageEnabled = true,
+}: {
+  closingImageEnabled?: boolean;
+}) {
   const { share, meta, hero, closing } = invitationConfig;
   const { showToast } = useToast();
   const [isSharing, setIsSharing] = useState(false);
@@ -75,17 +79,17 @@ export default function ShareFooter() {
           </button>
         </div>
 
-        {closing.imagePublicId && (
-          <div className="relative mx-auto mt-10 aspect-square w-full max-w-[280px] overflow-hidden rounded-2xl">
+        {closing.imagePublicId && closingImageEnabled && (
+          <div className="relative mx-auto mt-10 aspect-square w-full overflow-hidden rounded-2xl">
             <Image
               src={getCloudinaryUrl(closing.imagePublicId, {
-                width: 560,
-                height: 560,
+                width: 640,
+                height: 640,
                 crop: "fill",
               })}
               alt="마지막 인사 사진"
               fill
-              sizes="(max-width: 640px) 70vw, 280px"
+              sizes="(max-width: 480px) 100vw, 480px"
               className="object-cover"
             />
           </div>

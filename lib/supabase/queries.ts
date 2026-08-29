@@ -48,15 +48,20 @@ export async function getGalleryImages(): Promise<GalleryImage[]> {
 
 export interface SiteSettings {
   petalsEnabled: boolean;
+  closingImageEnabled: boolean;
 }
 
-const DEFAULT_SITE_SETTINGS: SiteSettings = { petalsEnabled: true };
+const DEFAULT_SITE_SETTINGS: SiteSettings = {
+  petalsEnabled: true,
+  closingImageEnabled: true,
+};
 
 /**
  * Supabase site_settings 테이블(항상 id=1인 단일 행)에서 사이트 전역 설정을 가져온다.
- * Supabase 미설정/에러 시에는 기본값(꽃잎 켜짐)으로 대체한다.
+ * Supabase 미설정/에러 시에는 기본값(모두 켜짐)으로 대체한다.
  *
- * 스키마: supabase/migrations/0002_create_site_settings.sql 참고
+ * 스키마: supabase/migrations/0002_create_site_settings.sql,
+ *        supabase/migrations/0003_add_closing_image_toggle.sql 참고
  */
 export async function getSiteSettings(): Promise<SiteSettings> {
   if (!isSupabaseConfigured || !supabase) {
@@ -65,7 +70,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
   const { data, error } = await supabase
     .from("site_settings")
-    .select("petals_enabled")
+    .select("petals_enabled, closing_image_enabled")
     .eq("id", 1)
     .maybeSingle();
 
@@ -74,6 +79,9 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     return DEFAULT_SITE_SETTINGS;
   }
 
-  return { petalsEnabled: data.petals_enabled as boolean };
+  return {
+    petalsEnabled: data.petals_enabled as boolean,
+    closingImageEnabled: (data.closing_image_enabled as boolean) ?? true,
+  };
 }
 
