@@ -3,11 +3,15 @@ import Reveal from "@/components/ui/Reveal";
 
 // 우리 초대 문구 안에서 강조하고 싶은 개발 용어에만 색을 입힌다.
 const HIGHLIGHTS: Record<string, string> = {
-  브랜치: "var(--dev-accent-green)",
-  프로젝트: "var(--dev-accent-blue)",
-  리뷰: "var(--dev-accent-yellow)",
-  커밋: "var(--dev-accent-pink)",
-  배포: "var(--dev-accent-orange)",
+  branch: "var(--dev-accent-green)",
+  code: "var(--dev-accent-orange)",
+  repository: "var(--dev-accent-green)",
+  merge: "var(--dev-accent-pink)",
+  review: "var(--dev-accent-pink)",
+  log: "var(--dev-accent-green)",
+  pair: "var(--dev-accent-green)",
+  commit: "var(--dev-accent-pink)",
+  deploy: "var(--dev-accent-orange)",
 };
 
 const HIGHLIGHT_PATTERN = new RegExp(`(${Object.keys(HIGHLIGHTS).join("|")})`);
@@ -41,7 +45,7 @@ export default function DevReadme() {
           {readmes.map((readme, i) => (
             <p
               key={i}
-              className="text-[13px] leading-loose sm:text-sm"
+              className="text-[13px] font-bold leading-loose sm:text-sm"
               style={{ color: "var(--dev-text)" }}
             >
               {readme.split("\n").map((line, j, arr) => (

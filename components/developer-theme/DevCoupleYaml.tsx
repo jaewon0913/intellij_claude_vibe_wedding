@@ -48,13 +48,13 @@ function CoupleCard({
         )}
         {person.mbti && (
           <p>
-            mbti: <span style={{ color: "var(--dev-accent-yellow)" }}>{person.mbti}</span>
+            mbti: <span style={{ color: "var(--dev-accent-orange)" }}>{person.mbti}</span>
           </p>
         )}
         {person.hobby && (
           <p>
             hobby:{" "}
-            <span style={{ color: "var(--dev-text-dim)" }}>
+            <span style={{ color: "var(--dev-accent-orange)" }}>
               &quot;{person.hobby}&quot;
             </span>
           </p>
@@ -62,7 +62,7 @@ function CoupleCard({
         {person.specialty && (
           <p>
             specialty:{" "}
-            <span style={{ color: "var(--dev-text-dim)" }}>
+            <span style={{ color: "var(--dev-accent-orange)" }}>
               &quot;{person.specialty}&quot;
             </span>
           </p>

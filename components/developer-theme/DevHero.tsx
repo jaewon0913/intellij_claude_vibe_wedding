@@ -222,7 +222,7 @@ export default function DevHero() {
           {venueName}{" "}
           <span
             className="text-sm font-normal"
-            style={{ color: "var(--dev-text-dim)" }}
+            style={{ color: "var(--dev-text)" }}
           >
             {hallName}
           </span>
@@ -231,7 +231,7 @@ export default function DevHero() {
           {address}
         </p>
         {transitInfo?.[0] && (
-          <p className="mt-1 text-xs" style={{ color: "var(--dev-text-dim)" }}>
+          <p className="mt-1 text-xs" style={{ color: "var(--dev-text)" }}>
             {transitInfo[0]}
           </p>
         )}
