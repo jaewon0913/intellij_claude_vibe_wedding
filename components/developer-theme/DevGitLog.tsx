@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { invitationConfig } from "@/config/invitation.config";
 import TerminalWindow from "./TerminalWindow";
 
@@ -15,15 +18,53 @@ function fakeHash(seed: number): string {
 export default function DevGitLog() {
   const { title, paragraphs } = invitationConfig.invitationMessage;
   const lines = flattenParagraphs(paragraphs);
+  const totalRows = lines.length + 2; // 맨 위 HEAD 커밋 + 맨 아래 Initial commit 포함
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+
+        // 화면에 들어오면 커밋 한 줄씩 순서대로 나타남
+        for (let i = 0; i < totalRows; i++) {
+          setTimeout(() => setVisibleCount((c) => Math.max(c, i + 1)), i * 280);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [totalRows]);
+
+  const rowClass = (index: number) =>
+    `pl-4 transition-all duration-300 ${
+      index < visibleCount
+        ? "translate-x-0 opacity-100"
+        : "translate-x-2 opacity-0"
+    }`;
 
   return (
-    <section className="px-4 py-6 sm:px-6">
+    <section ref={containerRef} className="px-4 py-6 sm:px-6">
       <TerminalWindow title="git log --oneline --graph">
         <div
           className="space-y-2 text-[13px] leading-relaxed sm:text-sm"
           style={{ color: "var(--dev-text)" }}
         >
-          <div>
+          <div
+            className={`transition-all duration-300 ${
+              0 < visibleCount
+                ? "translate-x-0 opacity-100"
+                : "translate-x-2 opacity-0"
+            }`}
+          >
             <span style={{ color: "var(--dev-accent-yellow)" }}>*</span>{" "}
             <span style={{ color: "var(--dev-accent-orange)" }}>
               {fakeHash(lines.length + 1)}
@@ -35,7 +76,7 @@ export default function DevGitLog() {
           </div>
 
           {lines.map((line, i) => (
-            <div key={i} className="pl-4">
+            <div key={i} className={rowClass(i + 1)}>
               <span style={{ color: "var(--dev-text-dim)" }}>│</span>
               <span style={{ color: "var(--dev-accent-yellow)" }}> *</span>{" "}
               <span style={{ color: "var(--dev-accent-orange)" }}>
@@ -45,7 +86,10 @@ export default function DevGitLog() {
             </div>
           ))}
 
-          <div className="pl-4" style={{ color: "var(--dev-text-dim)" }}>
+          <div
+            className={rowClass(lines.length + 1)}
+            style={{ color: "var(--dev-text-dim)" }}
+          >
             │ * {fakeHash(0)} Initial commit — 두 사람, 만나다
           </div>
         </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { invitationConfig } from "@/config/invitation.config";
 import type { Person } from "@/lib/types";
 import TerminalWindow from "./TerminalWindow";
+import Reveal from "@/components/ui/Reveal";
 
 function ContactRow({ person }: { person: Person }) {
   const isPrimary = person.relation === "신랑" || person.relation === "신부";
@@ -49,47 +50,53 @@ export default function DevContact() {
 
   return (
     <section className="px-4 py-6 sm:px-6">
-      <TerminalWindow title="team.yaml">
-        <div className="mb-3 flex gap-2 text-xs">
-          <button
-            type="button"
-            onClick={() => setTab("groom")}
-            className="rounded border px-2 py-1 transition"
-            style={{
-              borderColor: "var(--dev-border)",
-              backgroundColor:
-                tab === "groom" ? "var(--dev-bg-panel-2)" : "transparent",
-              color:
-                tab === "groom" ? "var(--dev-accent-green)" : "var(--dev-text-dim)",
-            }}
-          >
-            groom_team
-          </button>
-          <button
-            type="button"
-            onClick={() => setTab("bride")}
-            className="rounded border px-2 py-1 transition"
-            style={{
-              borderColor: "var(--dev-border)",
-              backgroundColor:
-                tab === "bride" ? "var(--dev-bg-panel-2)" : "transparent",
-              color:
-                tab === "bride" ? "var(--dev-accent-green)" : "var(--dev-text-dim)",
-            }}
-          >
-            bride_team
-          </button>
-        </div>
+      <Reveal>
+        <TerminalWindow title="team.yaml">
+          <div className="mb-3 flex gap-2 text-xs">
+            <button
+              type="button"
+              onClick={() => setTab("groom")}
+              className="rounded border px-2 py-1 transition"
+              style={{
+                borderColor: "var(--dev-border)",
+                backgroundColor:
+                  tab === "groom" ? "var(--dev-bg-panel-2)" : "transparent",
+                color:
+                  tab === "groom"
+                    ? "var(--dev-accent-green)"
+                    : "var(--dev-text-dim)",
+              }}
+            >
+              groom_team
+            </button>
+            <button
+              type="button"
+              onClick={() => setTab("bride")}
+              className="rounded border px-2 py-1 transition"
+              style={{
+                borderColor: "var(--dev-border)",
+                backgroundColor:
+                  tab === "bride" ? "var(--dev-bg-panel-2)" : "transparent",
+                color:
+                  tab === "bride"
+                    ? "var(--dev-accent-green)"
+                    : "var(--dev-text-dim)",
+              }}
+            >
+              bride_team
+            </button>
+          </div>
 
-        <div
-          className="text-[13px] leading-relaxed sm:text-sm"
-          style={{ color: "var(--dev-text)" }}
-        >
-          {people.map((person, i) => (
-            <ContactRow key={i} person={person} />
-          ))}
-        </div>
-      </TerminalWindow>
+          <div
+            className="text-[13px] leading-relaxed sm:text-sm"
+            style={{ color: "var(--dev-text)" }}
+          >
+            {people.map((person, i) => (
+              <ContactRow key={i} person={person} />
+            ))}
+          </div>
+        </TerminalWindow>
+      </Reveal>
     </section>
   );
 }

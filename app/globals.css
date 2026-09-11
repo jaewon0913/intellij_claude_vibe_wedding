@@ -140,3 +140,55 @@ body {
 .dev-cursor-blink {
   animation: dev-blink 1s step-start infinite;
 }
+
+/* developer 테마: 예식일 강조(캘린더 등) 은은한 발광 펄스 */
+@keyframes dev-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--dev-accent-pink) 15%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--dev-accent-pink) 8%, transparent);
+  }
+}
+
+.dev-pulse {
+  animation: dev-pulse 2.4s ease infinite;
+}
+
+/* developer 테마: 파이프라인 진행 중 스피너 */
+@keyframes dev-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dev-spin {
+  animation: dev-spin 0.9s linear infinite;
+}
+
+/* developer 테마: 컨페티 낙하 (Petals의 petal-fall과 원리는 같고, 1회성 축하 연출용) */
+@keyframes dev-confetti-fall {
+  to {
+    transform: translate3d(var(--confetti-drift, 0), 110vh, 0)
+      rotate(540deg);
+    opacity: 0.15;
+  }
+}
+
+.dev-confetti-fall {
+  animation-name: dev-confetti-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+/* developer 테마: SVG 선이 그려지는 효과 (브랜치 merge 다이어그램 등) */
+@keyframes dev-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.dev-draw {
+  animation: dev-draw 1.8s ease forwards;
+}

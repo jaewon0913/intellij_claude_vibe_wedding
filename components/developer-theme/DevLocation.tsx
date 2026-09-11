@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { invitationConfig } from "@/config/invitation.config";
 import { loadKakaoMapsScript } from "@/lib/kakao";
 import TerminalWindow from "./TerminalWindow";
+import Reveal from "@/components/ui/Reveal";
 
 export default function DevLocation() {
   const { address, venueName, lat, lng } = invitationConfig.location;
@@ -32,40 +33,42 @@ export default function DevLocation() {
 
   return (
     <section className="px-4 py-6 sm:px-6">
-      <TerminalWindow title="$ cat location.txt">
-        <div
-          className="text-[13px] leading-relaxed sm:text-sm"
-          style={{ color: "var(--dev-text)" }}
-        >
-          <p>
-            <span style={{ color: "var(--dev-accent-blue)" }}>venue</span> ={" "}
-            {venueName}
-          </p>
-          <p>
-            <span style={{ color: "var(--dev-accent-blue)" }}>address</span> ={" "}
-            {address}
-          </p>
-        </div>
+      <Reveal>
+        <TerminalWindow title="$ cat location.txt">
+          <div
+            className="text-[13px] leading-relaxed sm:text-sm"
+            style={{ color: "var(--dev-text)" }}
+          >
+            <p>
+              <span style={{ color: "var(--dev-accent-blue)" }}>venue</span> ={" "}
+              {venueName}
+            </p>
+            <p>
+              <span style={{ color: "var(--dev-accent-blue)" }}>address</span>{" "}
+              = {address}
+            </p>
+          </div>
 
-        <div
-          ref={mapContainerRef}
-          className="mt-3 h-56 w-full overflow-hidden rounded border"
-          style={{ borderColor: "var(--dev-border)" }}
-        />
+          <div
+            ref={mapContainerRef}
+            className="mt-3 h-56 w-full overflow-hidden rounded border"
+            style={{ borderColor: "var(--dev-border)" }}
+          />
 
-        <a
-          href={kakaoMapLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-3 inline-block rounded border px-3 py-1.5 text-xs transition hover:opacity-80"
-          style={{
-            borderColor: "var(--dev-border)",
-            color: "var(--dev-accent-green)",
-          }}
-        >
-          $ open ./directions --app=kakaomap
-        </a>
-      </TerminalWindow>
+          <a
+            href={kakaoMapLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-block rounded border px-3 py-1.5 text-xs transition hover:opacity-80"
+            style={{
+              borderColor: "var(--dev-border)",
+              color: "var(--dev-accent-green)",
+            }}
+          >
+            $ open ./directions --app=kakaomap
+          </a>
+        </TerminalWindow>
+      </Reveal>
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { invitationConfig } from "@/config/invitation.config";
 import type { BankAccount } from "@/lib/types";
 import TerminalWindow from "./TerminalWindow";
+import Reveal from "@/components/ui/Reveal";
 
 function envKey(prefix: string, index: number): string {
   return `${prefix}_ACCOUNT_${index + 1}`;
@@ -55,24 +56,34 @@ export default function DevAccounts() {
 
   return (
     <section className="px-4 py-6 sm:px-6">
-      <TerminalWindow title=".env.gift">
-        <div
-          className="space-y-1.5 text-[13px] leading-relaxed sm:text-sm"
-          style={{ color: "var(--dev-text)" }}
-        >
-          <p style={{ color: "var(--dev-text-dim)" }}># GROOM</p>
-          {groomSide.map((account, i) => (
-            <AccountLine key={i} envName={envKey("GROOM", i)} account={account} />
-          ))}
+      <Reveal>
+        <TerminalWindow title=".env.gift">
+          <div
+            className="space-y-1.5 text-[13px] leading-relaxed sm:text-sm"
+            style={{ color: "var(--dev-text)" }}
+          >
+            <p style={{ color: "var(--dev-text-dim)" }}># GROOM</p>
+            {groomSide.map((account, i) => (
+              <AccountLine
+                key={i}
+                envName={envKey("GROOM", i)}
+                account={account}
+              />
+            ))}
 
-          <p className="mt-3" style={{ color: "var(--dev-text-dim)" }}>
-            # BRIDE
-          </p>
-          {brideSide.map((account, i) => (
-            <AccountLine key={i} envName={envKey("BRIDE", i)} account={account} />
-          ))}
-        </div>
-      </TerminalWindow>
+            <p className="mt-3" style={{ color: "var(--dev-text-dim)" }}>
+              # BRIDE
+            </p>
+            {brideSide.map((account, i) => (
+              <AccountLine
+                key={i}
+                envName={envKey("BRIDE", i)}
+                account={account}
+              />
+            ))}
+          </div>
+        </TerminalWindow>
+      </Reveal>
     </section>
   );
 }
