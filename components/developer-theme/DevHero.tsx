@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { invitationConfig } from "@/config/invitation.config";
 import TerminalWindow from "./TerminalWindow";
-import { useTypewriter } from "./useTypewriter";
+
+type TermLine =
+  | { type: "cmd"; text: string }
+  | { type: "out"; text: string; color?: string };
 
 function BranchMergeGraphic({ start }: { start: boolean }) {
   return (
@@ -61,40 +64,101 @@ function BranchMergeGraphic({ start }: { start: boolean }) {
 export default function DevHero() {
   const { groomName, brideName, eventDateText } = invitationConfig.hero;
 
-  const { text: typedCommand, done: commandDone } = useTypewriter(
-    `git merge ${groomName}-branch ${brideName}-branch --strategy=love`,
-    { startDelay: 500, minDelay: 10, maxDelay: 22 }
-  );
+  // 화면에 순서대로 타이핑되는 터미널 대사. 문구는 전부 새로 작성한 것.
+  const lines: TermLine[] = [
+    { type: "cmd", text: "git checkout -b together" },
+    { type: "out", text: "Switched to a new branch 'together'" },
+    {
+      type: "cmd",
+      text: `git merge ${groomName}-life ${brideName}-life --strategy=forever`,
+    },
+    { type: "out", text: "Merging two hearts..." },
+    {
+      type: "out",
+      text: "✓ no conflicts — merged happily",
+      color: "var(--dev-accent-green)",
+    },
+    {
+      type: "out",
+      text: "Fast-forward complete. Two lives, one future.",
+      color: "var(--dev-accent-yellow)",
+    },
+    { type: "cmd", text: "cat vows.txt" },
+    {
+      type: "out",
+      text: "평생을 함께 걷겠습니다. 축복해 주세요 🤍",
+      color: "var(--dev-accent-pink)",
+    },
+  ];
 
-  const [showResult, setShowResult] = useState(false);
+  const [lineIndex, setLineIndex] = useState(0);
+  const [charCount, setCharCount] = useState(0);
+  const allDone = lineIndex >= lines.length;
+  const currentLine = lines[lineIndex];
+
+  useEffect(() => {
+    if (allDone) return;
+
+    if (currentLine.type === "out") {
+      const timer = setTimeout(() => {
+        setLineIndex((i) => i + 1);
+        setCharCount(0);
+      }, 320);
+      return () => clearTimeout(timer);
+    }
+
+    // 명령줄: 한 글자씩 타이핑
+    if (charCount < currentLine.text.length) {
+      const delay = 14 + Math.random() * 24;
+      const timer = setTimeout(() => setCharCount((c) => c + 1), delay);
+      return () => clearTimeout(timer);
+    }
+
+    const timer = setTimeout(() => {
+      setLineIndex((i) => i + 1);
+      setCharCount(0);
+    }, 260);
+    return () => clearTimeout(timer);
+  }, [allDone, currentLine, charCount]);
 
   return (
     <section className="px-4 pb-6 pt-8 sm:px-6">
       <TerminalWindow title="terminal — zsh">
-        <p
-          className="text-[13px] leading-relaxed sm:text-sm"
-          style={{ color: "var(--dev-text)" }}
-        >
-          <span style={{ color: "var(--dev-accent-green)" }}>$ </span>
-          {typedCommand}
-          {!commandDone && <span className="dev-cursor-blink">▌</span>}
-        </p>
-
-        {commandDone && (
-          <div
-            className="mt-2 animate-fade-in-up text-[13px] leading-relaxed sm:text-sm"
-            style={{ color: "var(--dev-text-dim)" }}
-            onAnimationEnd={() => setShowResult(true)}
-          >
-            <p>
-              <span style={{ color: "var(--dev-accent-green)" }}>✓</span>{" "}
-              0 conflicts — fast-forward merge complete
+        <div className="space-y-1 text-[13px] leading-relaxed sm:text-sm">
+          {lines.slice(0, lineIndex).map((line, i) => (
+            <p
+              key={i}
+              style={{
+                color:
+                  line.type === "cmd"
+                    ? "var(--dev-text)"
+                    : (line.color ?? "var(--dev-text-dim)"),
+              }}
+            >
+              {line.type === "cmd" && (
+                <span style={{ color: "var(--dev-accent-green)" }}>$ </span>
+              )}
+              {line.text}
             </p>
-            <p>두 사람이 하나의 브랜치로 합쳐졌습니다.</p>
-          </div>
-        )}
+          ))}
 
-        <BranchMergeGraphic start={showResult} />
+          {!allDone && currentLine.type === "cmd" && (
+            <p style={{ color: "var(--dev-text)" }}>
+              <span style={{ color: "var(--dev-accent-green)" }}>$ </span>
+              {currentLine.text.slice(0, charCount)}
+              <span className="dev-cursor-blink">▌</span>
+            </p>
+          )}
+
+          {allDone && (
+            <p style={{ color: "var(--dev-text)" }}>
+              <span style={{ color: "var(--dev-accent-green)" }}>$ </span>
+              <span className="dev-cursor-blink">▌</span>
+            </p>
+          )}
+        </div>
+
+        <BranchMergeGraphic start={allDone} />
       </TerminalWindow>
 
       <div className="mt-8 text-center">
@@ -110,10 +174,7 @@ export default function DevHero() {
         >
           {groomName}
         </h1>
-        <p
-          className="my-1 text-sm"
-          style={{ color: "var(--dev-accent-pink)" }}
-        >
+        <p className="my-1 text-sm" style={{ color: "var(--dev-accent-pink)" }}>
           &amp;&amp;
         </p>
         <h1
@@ -122,10 +183,7 @@ export default function DevHero() {
         >
           {brideName}
         </h1>
-        <p
-          className="mt-4 text-xs"
-          style={{ color: "var(--dev-text-dim)" }}
-        >
+        <p className="mt-4 text-xs" style={{ color: "var(--dev-text-dim)" }}>
           {eventDateText}
         </p>
       </div>
