@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import { ToastProvider } from "@/components/providers/ToastProvider";
 import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
-import { getSiteSettings } from "@/lib/supabase/queries";
-import Petals from "@/components/ui/Petals";
-import BgmPlayer from "@/components/ui/BgmPlayer";
 import "pretendard/dist/web/variable/pretendardvariable.css";
 import "@fontsource/gowun-batang/400.css";
 import "@fontsource/gowun-batang/700.css";
@@ -35,23 +31,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+// root layout은 이제 html/body와 공통 폰트/메타데이터만 담당한다.
+// 480px 카드 프레임 + Petals + BGM + Toast 같은 "메인(파스텔) 테마" 전용 장치는
+// app/(main)/layout.tsx로 옮겨서, developer/terminal 같은 다른 테마 라우트는
+// 이 프레임의 영향을 받지 않도록 분리했다.
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // 재배포 없이 관리자 페이지에서 즉시 켜고 끌 수 있도록, 매 요청마다 최신 설정을 읽는다.
-  const { petalsEnabled } = await getSiteSettings();
-
   return (
     <html lang="ko" className="h-full antialiased">
-      <body className="min-h-full bg-ink text-ink">
-        <div className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col bg-paper shadow-2xl">
-          {petalsEnabled && <Petals />}
-          <BgmPlayer />
-          <ToastProvider>{children}</ToastProvider>
-        </div>
-      </body>
+      <body className="min-h-full bg-ink text-ink">{children}</body>
     </html>
   );
 }

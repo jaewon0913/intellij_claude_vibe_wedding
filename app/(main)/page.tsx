@@ -1,4 +1,4 @@
-﻿import Hero from "@/components/sections/Hero";
+import Hero from "@/components/sections/Hero";
 import Invitation from "@/components/sections/Invitation";
 import EventInfo from "@/components/sections/EventInfo";
 import GroomBride from "@/components/sections/GroomBride";
