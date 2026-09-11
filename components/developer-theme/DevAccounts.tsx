@@ -31,9 +31,9 @@ function AccountLine({
 
   return (
     <div>
-      <span style={{ color: "var(--dev-accent-blue)" }}>{envName}</span>
+      <span style={{ color: "var(--dev-accent-pink)" }}>{envName}</span>
       <span style={{ color: "var(--dev-text-dim)" }}>=</span>
-      <span style={{ color: "var(--dev-accent-orange)" }}>
+      <span style={{ color: "var(--dev-accent-green)" }}>
         &quot;{account.bank} {account.accountNumber} ({account.holder})&quot;
       </span>{" "}
       <button
@@ -57,7 +57,7 @@ export default function DevAccounts() {
   return (
     <section className="px-4 py-6 sm:px-6">
       <Reveal>
-        <TerminalWindow title=".env.gift">
+        <TerminalWindow title=".env.gift - 마음 전하실 곳">
           <div
             className="space-y-1.5 text-[13px] leading-relaxed sm:text-sm"
             style={{ color: "var(--dev-text)" }}

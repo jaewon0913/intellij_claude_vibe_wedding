@@ -8,7 +8,9 @@ export default function DevNav() {
       style={{ borderColor: "var(--dev-border)", color: "var(--dev-text-dim)" }}
     >
       <span>
-        <span style={{ color: "var(--dev-accent-green)" }}>~/wedding</span>
+        <span style={{ color: "var(--dev-accent-green)" }}>재원</span>
+        🧡
+        <span style={{ color: "var(--dev-accent-pink)" }}>선영</span>
         <span> main</span>
       </span>
 
@@ -21,7 +23,7 @@ export default function DevNav() {
             backgroundColor: "var(--dev-bg-panel)",
           }}
         >
-          ← 메인 버전
+          ← 기본 버전
         </Link>
         <DevThemeToggle />
       </div>

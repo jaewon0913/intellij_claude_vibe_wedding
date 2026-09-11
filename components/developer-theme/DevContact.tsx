@@ -51,7 +51,7 @@ export default function DevContact() {
   return (
     <section className="px-4 py-6 sm:px-6">
       <Reveal>
-        <TerminalWindow title="team.yaml">
+        <TerminalWindow title="team.yaml - 연락하기">
           <div className="mb-3 flex gap-2 text-xs">
             <button
               type="button"

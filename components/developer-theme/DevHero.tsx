@@ -131,7 +131,7 @@ export default function DevHero() {
 
   return (
     <section className="px-4 pb-6 pt-8 sm:px-6">
-      <TerminalWindow title="terminal — zsh">
+      <TerminalWindow title="guest@wedding terminal — zsh">
         <div
           className="space-y-1 text-[13px] leading-relaxed sm:text-sm"
           style={{ minHeight: reservedHeight }}
@@ -222,7 +222,7 @@ export default function DevHero() {
           {venueName}{" "}
           <span
             className="text-sm font-normal"
-            style={{ color: "var(--dev-text)" }}
+            style={{ color: "var(--dev-accent-green)" }}
           >
             {hallName}
           </span>
@@ -231,7 +231,7 @@ export default function DevHero() {
           {address}
         </p>
         {transitInfo?.[0] && (
-          <p className="mt-1 text-xs" style={{ color: "var(--dev-text)" }}>
+          <p className="mt-1 text-xs" style={{ color: "var(--dev-accent-orange)" }}>
             {transitInfo[0]}
           </p>
         )}

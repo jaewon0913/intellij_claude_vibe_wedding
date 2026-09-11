@@ -146,14 +146,14 @@ export default function DevLocation() {
                 icon="🚇"
                 label="지하철"
                 enLabel="subway"
-                color="var(--dev-accent-blue)"
+                color="var(--dev-accent-green)"
                 lines={transitInfo}
               />
               <InfoBlock
                 icon="🚌"
                 label="버스"
                 enLabel="bus"
-                color="var(--dev-accent-green)"
+                color="var(--dev-accent-blue)"
                 lines={shuttleInfo}
               />
             </TerminalWindow>

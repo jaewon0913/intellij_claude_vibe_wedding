@@ -45,7 +45,7 @@ export default function DevReadme() {
           {readmes.map((readme, i) => (
             <p
               key={i}
-              className="text-[13px] font-bold leading-loose sm:text-sm"
+              className="text-[13px] leading-loose sm:text-sm"
               style={{ color: "var(--dev-text)" }}
             >
               {readme.split("\n").map((line, j, arr) => (
