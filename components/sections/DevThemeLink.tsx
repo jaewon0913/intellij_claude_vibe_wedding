@@ -15,7 +15,7 @@ export default function DevThemeLink() {
           <br />
           특별한 버전의 청첩장도 함께 준비했어요.
           <br />
-          개발은 {groomName}이, 문구는 {brideName}이 다듬었답니다.
+          개발은 {groomName}이가, 문구는 {brideName}이 다듬었답니다.
           <br />
           재미 삼아 편하게 구경해 주세요!
         </p>
