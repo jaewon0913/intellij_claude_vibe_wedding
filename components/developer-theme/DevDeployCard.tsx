@@ -175,21 +175,10 @@ export default function DevDeployCard() {
             <p className="pl-1">
               scheduled_at:{" "}
               <span style={{ color: "var(--dev-accent-orange)" }}>
-                {datePart} {timePart}
+                {datePart}<br/>{timePart}
               </span>
             </p>
           </div>
-
-          <p
-            className="mt-3 rounded px-3 py-2 text-xs"
-            style={{
-              backgroundColor: "var(--dev-bg-panel-2)",
-              color: "var(--dev-accent-yellow)",
-            }}
-          >
-            {"// "}
-            {dDayText}
-          </p>
         </div>
       </TerminalWindow>
 
