@@ -67,7 +67,7 @@ export default function DevAiGreetings() {
         <div className="mt-4">
           <TerminalWindow title="$ tail -f agents.log">
             <p className="text-xs" style={{ color: "var(--dev-text-dim)" }}>
-              {"// 축하 메시지 여러 건이 도착했습니다"}
+              {"// Ai Agent들의 축하 메시지가 도착했습니다"}
             </p>
 
             <div className="mt-4 grid grid-cols-4 gap-y-4 sm:grid-cols-7">

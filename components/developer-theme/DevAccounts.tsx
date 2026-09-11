@@ -6,17 +6,7 @@ import type { BankAccount } from "@/lib/types";
 import TerminalWindow from "./TerminalWindow";
 import Reveal from "@/components/ui/Reveal";
 
-function envKey(prefix: string, index: number): string {
-  return `${prefix}_ACCOUNT_${index + 1}`;
-}
-
-function AccountLine({
-  envName,
-  account,
-}: {
-  envName: string;
-  account: BankAccount;
-}) {
+function AccountRow({ account }: { account: BankAccount }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -30,16 +20,33 @@ function AccountLine({
   };
 
   return (
-    <div>
-      <span style={{ color: "var(--dev-accent-pink)" }}>{envName}</span>
-      <span style={{ color: "var(--dev-text-dim)" }}>=</span>
-      <span style={{ color: "var(--dev-accent-green)" }}>
-        &quot;{account.bank} {account.accountNumber} ({account.holder})&quot;
-      </span>{" "}
+    <div
+      className="flex items-center justify-between gap-2 border-b py-3 last:border-b-0"
+      style={{ borderColor: "var(--dev-border)" }}
+    >
+      <span
+        className="shrink-0 text-sm font-semibold"
+        style={{ color: "var(--dev-text)" }}
+      >
+        {account.holder}
+      </span>
+
+      <div className="min-w-0 flex-1 text-center">
+        <p className="text-xs" style={{ color: "var(--dev-text-dim)" }}>
+          {account.bank}
+        </p>
+        <p
+          className="truncate text-[13px] sm:text-sm"
+          style={{ color: "var(--dev-text)" }}
+        >
+          {account.accountNumber}
+        </p>
+      </div>
+
       <button
         type="button"
         onClick={handleCopy}
-        className="rounded border px-1.5 py-0.5 text-[10px] transition hover:opacity-80"
+        className="shrink-0 rounded border px-2 py-1 text-[11px] transition hover:opacity-80"
         style={{
           borderColor: "var(--dev-border)",
           color: copied ? "var(--dev-accent-green)" : "var(--dev-text-dim)",
@@ -58,29 +65,30 @@ export default function DevAccounts() {
     <section className="px-4 py-6 sm:px-6">
       <Reveal>
         <TerminalWindow title=".env.gift - 마음 전하실 곳">
-          <div
-            className="space-y-1.5 text-[13px] leading-relaxed sm:text-sm"
-            style={{ color: "var(--dev-text)" }}
-          >
-            <p style={{ color: "var(--dev-text-dim)" }}># GROOM</p>
-            {groomSide.map((account, i) => (
-              <AccountLine
-                key={i}
-                envName={envKey("GROOM", i)}
-                account={account}
-              />
-            ))}
-
-            <p className="mt-3" style={{ color: "var(--dev-text-dim)" }}>
-              # BRIDE
+          <div>
+            <p
+              className="text-xs"
+              style={{ color: "var(--dev-accent-blue)" }}
+            >
+              groom.team
             </p>
-            {brideSide.map((account, i) => (
-              <AccountLine
-                key={i}
-                envName={envKey("BRIDE", i)}
-                account={account}
-              />
-            ))}
+            <div className="mt-1">
+              {groomSide.map((account, i) => (
+                <AccountRow key={i} account={account} />
+              ))}
+            </div>
+
+            <p
+              className="mt-4 text-xs"
+              style={{ color: "var(--dev-accent-pink)" }}
+            >
+              bride.team
+            </p>
+            <div className="mt-1">
+              {brideSide.map((account, i) => (
+                <AccountRow key={i} account={account} />
+              ))}
+            </div>
           </div>
         </TerminalWindow>
       </Reveal>

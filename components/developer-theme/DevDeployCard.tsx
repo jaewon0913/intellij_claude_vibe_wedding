@@ -7,11 +7,11 @@ import TerminalWindow from "./TerminalWindow";
 
 // 파이프라인 단계 이름과 설명. 문구는 우리 나름대로 새로 작성한 것.
 const STEPS: { label: string; desc: string }[] = [
-  { label: "build", desc: "두 사람의 마음을 하나로 모으는 중" },
-  { label: "test", desc: "함께한 시간 동안 서로를 확인함" },
-  { label: "review", desc: "양가 상견례 무사히 마침" },
+  { label: "build", desc: "두 사람의 마음을 하나로 build" },
+  { label: "test", desc: "연애 전 구간 test 통과" },
+  { label: "review", desc: "함께한 시간 동안 서로를 확인함" },
   { label: "approve", desc: "양가 부모님 승인 완료" },
-  { label: "deploy", desc: "결혼식, 이제부터 시작되는 하루하루" },
+  { label: "deploy", desc: "결혼식, 이제부터 함께 시작되는 하루하루" },
 ];
 
 function getCountdownParts(target: Date) {
