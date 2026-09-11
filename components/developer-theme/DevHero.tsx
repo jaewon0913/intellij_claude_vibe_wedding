@@ -83,7 +83,7 @@ export default function DevHero() {
       text: "Fast-forward complete. Two lives, one future.",
       color: "var(--dev-accent-yellow)",
     },
-    { type: "cmd", text: "cat vows.txt" },
+    { type: "cmd", text: "cat invitation.md" },
     {
       type: "out",
       text: "평생을 함께 걷겠습니다. 축복해 주세요 🤍",
@@ -122,7 +122,10 @@ export default function DevHero() {
   }, [allDone, currentLine, charCount]);
 
   return (
-    <section className="px-4 pb-6 pt-8 sm:px-6">
+    <section
+      className="sticky top-0 z-20 px-4 pb-6 pt-8 sm:px-6"
+      style={{ backgroundColor: "var(--dev-bg)" }}
+    >
       <TerminalWindow title="terminal — zsh">
         <div className="space-y-1 text-[13px] leading-relaxed sm:text-sm">
           {lines.slice(0, lineIndex).map((line, i) => (
@@ -157,11 +160,11 @@ export default function DevHero() {
             </p>
           )}
         </div>
-
-        <BranchMergeGraphic start={allDone} />
       </TerminalWindow>
 
-      <div className="mt-8 text-center">
+      <BranchMergeGraphic start={allDone} />
+
+      <div className="mt-4 text-center">
         <p
           className="text-xs tracking-[0.3em]"
           style={{ color: "var(--dev-text-dim)" }}
