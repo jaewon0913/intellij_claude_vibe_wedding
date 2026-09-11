@@ -49,6 +49,7 @@ export interface InvitationConfig {
   invitationMessage: {
     title: string;
     paragraphs: string[]; // 문단 단위 배열
+    readmes: string[];
     groomFamily: {
       father: string;
       mother: string;
