@@ -1,19 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { invitationConfig } from "@/config/invitation.config";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import { shareKakaoCustom } from "@/lib/kakao";
 import { useToast } from "@/components/providers/ToastProvider";
 import Reveal from "@/components/ui/Reveal";
-
-function KakaoIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-      <path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.76 1.84 5.19 4.62 6.58-.2.73-.73 2.66-.84 3.07-.13.5.18.5.39.36.16-.11 2.6-1.77 3.66-2.49.71.1 1.44.15 2.17.15 5.52 0 10-3.48 10-7.8S17.52 3 12 3Z" />
-    </svg>
-  );
-}
+import TerminalWindow from "./TerminalWindow";
 
 export default function DevShareFooter() {
   const { share, hero } = invitationConfig;
@@ -44,11 +38,67 @@ export default function DevShareFooter() {
           type="button"
           onClick={handleShareKakao}
           disabled={isSharing}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#FEE500] py-3.5 text-sm font-medium text-[#191919] transition hover:brightness-95 disabled:opacity-60"
+          className="flex w-full items-center justify-center rounded-lg py-3.5 text-sm font-bold transition hover:brightness-95 disabled:opacity-60"
+          style={{
+            backgroundColor: "var(--dev-accent-green)",
+            color: "var(--dev-bg)",
+          }}
         >
-          <KakaoIcon />
-          청첩장 공유하기
+          $ ./share --invite
         </button>
+
+        <Link
+          href="/"
+          className="mt-2 flex w-full items-center justify-center rounded-lg border py-2.5 text-xs transition hover:opacity-80"
+          style={{
+            borderColor: "var(--dev-border)",
+            color: "var(--dev-text-dim)",
+            backgroundColor: "var(--dev-bg-panel)",
+          }}
+        >
+          👤 기본 버전으로 이동
+        </Link>
+
+        {/* 문구는 원본 사이트와 다른 소재(커널 모듈 대신 systemd 서비스)로 새로 작성함 */}
+        <div className="mt-4">
+          <TerminalWindow title="$ systemctl status marriage.service">
+            <div
+              className="space-y-1 text-[12px] leading-relaxed sm:text-sm"
+              style={{ color: "var(--dev-text)" }}
+            >
+              <p style={{ color: "var(--dev-text-dim)" }}>
+                $ sudo systemctl start marriage.service
+              </p>
+              <p style={{ color: "var(--dev-text-dim)" }}>
+                $ systemctl status marriage.service
+              </p>
+              <p>
+                <span style={{ color: "var(--dev-accent-green)" }}>●</span>{" "}
+                marriage.service —{" "}
+                <span style={{ color: "var(--dev-accent-green)" }}>
+                  active (running)
+                </span>
+              </p>
+              <p className="pl-4">
+                Main PID: 2026 (
+                <span style={{ color: "var(--dev-accent-yellow)" }}>
+                  forever
+                </span>
+                )
+              </p>
+              <p className="pl-4">
+                Status: &quot;hearts linked, uptime infinite&quot;
+              </p>
+              <p style={{ color: "var(--dev-text-dim)" }}>
+                $ sudo systemctl stop marriage.service
+              </p>
+              <p style={{ color: "var(--dev-accent-orange)" }}>
+                Failed to stop marriage.service: unit is protected and cannot
+                be stopped.
+              </p>
+            </div>
+          </TerminalWindow>
+        </div>
       </Reveal>
     </section>
   );
