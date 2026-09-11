@@ -1,5 +1,4 @@
 import Link from "next/link";
-import DevThemeToggle from "./DevThemeToggle";
 
 export default function DevNav() {
   return (
@@ -14,19 +13,16 @@ export default function DevNav() {
         <span> main</span>
       </span>
 
-      <div className="flex items-center gap-2">
-        <Link
-          href="/"
-          className="rounded border px-2 py-1 transition hover:opacity-80"
-          style={{
-            borderColor: "var(--dev-border)",
-            backgroundColor: "var(--dev-bg-panel)",
-          }}
-        >
-          ← 기본 버전
-        </Link>
-        <DevThemeToggle />
-      </div>
+      <Link
+        href="/"
+        className="rounded border px-2 py-1 transition hover:opacity-80"
+        style={{
+          borderColor: "var(--dev-border)",
+          backgroundColor: "var(--dev-bg-panel)",
+        }}
+      >
+        ← 기본 버전
+      </Link>
     </div>
   );
 }
