@@ -13,7 +13,7 @@ export default function DeveloperLayout({
   return (
     <div
       data-dev-theme="dark"
-      className="mx-auto min-h-screen w-full max-w-2xl"
+      className="mx-auto min-h-screen w-full max-w-[480px]"
       style={{
         backgroundColor: "var(--dev-bg)",
         color: "var(--dev-text)",

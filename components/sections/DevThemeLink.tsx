@@ -11,11 +11,11 @@ export default function DevThemeLink() {
     <section className="bg-paper px-6 pb-12 pt-2 sm:px-10">
       <Reveal className="mx-auto max-w-md text-center">
         <p className="text-sm leading-relaxed text-ink-light">
-          {groomName}과 {brideName} 모두 개발자로 일하고 있어서,
+          {groomName}이가 현재 개발자로 일하고 있어서,
           <br />
-          저희다운 방식으로 특별한 버전의 청첩장도 함께 준비했어요.
+          특별한 버전의 청첩장도 함께 준비했어요.
           <br />
-          화면은 {groomName}이, 문구는 {brideName}이 다듬었답니다.
+          개발은 {groomName}이, 문구는 {brideName}이 다듬었답니다.
           <br />
           재미 삼아 편하게 구경해 주세요!
         </p>
