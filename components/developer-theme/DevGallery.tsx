@@ -7,10 +7,12 @@ import { getCloudinaryUrl } from "@/lib/cloudinary";
 import type { GalleryImage } from "@/lib/types";
 import TerminalWindow from "./TerminalWindow";
 import Reveal from "@/components/ui/Reveal";
+import GalleryModal from "@/components/sections/GalleryModal";
 
 export default function DevGallery() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -33,7 +35,12 @@ export default function DevGallery() {
         <TerminalWindow title="ls -la ./photos">
           <div className="grid grid-cols-3 gap-2">
             {images.map((image, index) => (
-              <div key={image.id}>
+              <button
+                key={image.id}
+                type="button"
+                onClick={() => setSelectedIndex(index)}
+                className="text-left"
+              >
                 <div
                   className="relative aspect-square overflow-hidden rounded border"
                   style={{ borderColor: "var(--dev-border)" }}
@@ -56,11 +63,19 @@ export default function DevGallery() {
                 >
                   photo_{String(index + 1).padStart(2, "0")}.jpg
                 </p>
-              </div>
+              </button>
             ))}
           </div>
         </TerminalWindow>
       </Reveal>
+
+      {selectedIndex !== null && (
+        <GalleryModal
+          images={images}
+          initialIndex={selectedIndex}
+          onClose={() => setSelectedIndex(null)}
+        />
+      )}
     </section>
   );
 }

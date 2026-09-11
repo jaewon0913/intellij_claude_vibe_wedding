@@ -37,7 +37,7 @@ function CoupleCard({
       >
         <p>
           <span style={{ color: "var(--dev-accent-blue)" }}>name</span>:{" "}
-          <span style={{ color: "var(--dev-accent-orange)" }}>{person.name}</span>
+          <span className="text-[17px] font-bold" style={{ color: "var(--dev-accent-white)" }}>{person.name}</span>
         </p>
         {person.nameEn && (
           <p>
