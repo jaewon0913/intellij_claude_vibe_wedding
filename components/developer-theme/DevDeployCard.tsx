@@ -88,12 +88,16 @@ export default function DevDeployCard() {
   }, []);
 
   const target = new Date(`${date}T${time}:00`);
-  const [countdown, setCountdown] = useState(() => getCountdownParts(target));
+  // 서버 렌더링 시점과 클라이언트 하이드레이션 시점의 "지금"이 미세하게 달라
+  // 초 단위 값이 어긋나는 하이드레이션 불일치를 막기 위해, 마운트 이후에만 계산한다.
+  const [countdown, setCountdown] = useState<ReturnType<
+    typeof getCountdownParts
+  > | null>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown(getCountdownParts(target));
-    }, 1000);
+    const update = () => setCountdown(getCountdownParts(target));
+    update();
+    const timer = setInterval(update, 1000);
     return () => clearInterval(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, time]);
@@ -187,16 +191,17 @@ export default function DevDeployCard() {
           className="text-xs tracking-[0.25em]"
           style={{ color: "var(--dev-text-dim)" }}
         >
-          DEPLOY COUNTDOWN — D-{String(countdown.days).padStart(3, "0")}
+          DEPLOY COUNTDOWN
+          {countdown && ` — D-${String(countdown.days).padStart(3, "0")}`}
         </p>
         <div className="mt-3 flex items-center justify-center gap-2">
-          <CountdownBox value={countdown.days} label="DAYS" />
+          <CountdownBox value={countdown?.days ?? 0} label="DAYS" />
           <span style={{ color: "var(--dev-text-dim)" }}>:</span>
-          <CountdownBox value={countdown.hours} label="HOURS" />
+          <CountdownBox value={countdown?.hours ?? 0} label="HOURS" />
           <span style={{ color: "var(--dev-text-dim)" }}>:</span>
-          <CountdownBox value={countdown.minutes} label="MIN" />
+          <CountdownBox value={countdown?.minutes ?? 0} label="MIN" />
           <span style={{ color: "var(--dev-text-dim)" }}>:</span>
-          <CountdownBox value={countdown.seconds} label="SEC" />
+          <CountdownBox value={countdown?.seconds ?? 0} label="SEC" />
         </div>
       </div>
     </section>
