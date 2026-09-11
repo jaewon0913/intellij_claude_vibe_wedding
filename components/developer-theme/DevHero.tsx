@@ -15,43 +15,45 @@ function BranchMergeGraphic({ start }: { start: boolean }) {
       className="mx-auto mt-6 w-full max-w-[280px]"
       aria-hidden="true"
     >
+      {/* 위쪽(초록)과 아래쪽(핑크) 두 브랜치가 모두 왼쪽에서 시작해서
+          가운데에서 한 줄로 합류한 뒤 오른쪽 끝 점까지 이어짐 */}
       <path
-        d="M20,95 C 70,95 90,55 120,55"
+        d="M20,25 C 70,25 90,55 110,60"
         fill="none"
         stroke="var(--dev-accent-green)"
         strokeWidth="2.5"
         strokeLinecap="round"
-        strokeDasharray="180"
-        strokeDashoffset={start ? 0 : 180}
+        strokeDasharray="120"
+        strokeDashoffset={start ? 0 : 120}
         className={start ? "dev-draw" : ""}
       />
       <path
-        d="M220,95 C 170,95 150,55 120,55"
+        d="M20,95 C 70,95 90,65 110,60"
         fill="none"
         stroke="var(--dev-accent-pink)"
         strokeWidth="2.5"
         strokeLinecap="round"
-        strokeDasharray="180"
-        strokeDashoffset={start ? 0 : 180}
+        strokeDasharray="120"
+        strokeDashoffset={start ? 0 : 120}
         className={start ? "dev-draw" : ""}
         style={{ animationDelay: "0.15s" }}
       />
       <path
-        d="M120,55 L 190,55"
+        d="M110,60 L 210,60"
         fill="none"
         stroke="var(--dev-text)"
         strokeWidth="2.5"
         strokeLinecap="round"
-        strokeDasharray="80"
-        strokeDashoffset={start ? 0 : 80}
+        strokeDasharray="100"
+        strokeDashoffset={start ? 0 : 100}
         className={start ? "dev-draw" : ""}
         style={{ animationDelay: "1.6s" }}
       />
-      <circle cx="20" cy="95" r="4" fill="var(--dev-accent-green)" />
-      <circle cx="220" cy="95" r="4" fill="var(--dev-accent-pink)" />
+      <circle cx="20" cy="25" r="4" fill="var(--dev-accent-green)" />
+      <circle cx="20" cy="95" r="4" fill="var(--dev-accent-pink)" />
       <circle
-        cx="190"
-        cy="55"
+        cx="210"
+        cy="60"
         r="4"
         fill="var(--dev-text)"
         opacity={start ? 1 : 0}
@@ -121,13 +123,17 @@ export default function DevHero() {
     return () => clearTimeout(timer);
   }, [allDone, currentLine, charCount]);
 
+  // 타이핑 진행 중에 창 크기가 계속 커졌다 줄었다 하지 않도록,
+  // 전체 줄이 다 찍혔을 때 기준으로 높이를 미리 확보해둔다.
+  const reservedHeight = (lines.length + 1) * 25;
+
   return (
-    <section
-      className="sticky top-0 z-20 px-4 pb-6 pt-8 sm:px-6"
-      style={{ backgroundColor: "var(--dev-bg)" }}
-    >
+    <section className="px-4 pb-6 pt-8 sm:px-6">
       <TerminalWindow title="terminal — zsh">
-        <div className="space-y-1 text-[13px] leading-relaxed sm:text-sm">
+        <div
+          className="space-y-1 text-[13px] leading-relaxed sm:text-sm"
+          style={{ minHeight: reservedHeight }}
+        >
           {lines.slice(0, lineIndex).map((line, i) => (
             <p
               key={i}
