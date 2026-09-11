@@ -58,6 +58,50 @@ function AccountRow({ account }: { account: BankAccount }) {
   );
 }
 
+function AccountGroup({
+  label,
+  color,
+  accounts,
+}: {
+  label: string;
+  color: string;
+  accounts: BankAccount[];
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={() => setIsOpen((v) => !v)}
+        aria-expanded={isOpen}
+        className="flex w-full items-center justify-between py-1 text-left"
+      >
+        <span className="text-xs" style={{ color }}>
+          {label}
+        </span>
+        <span
+          className="text-xs transition-transform"
+          style={{
+            color: "var(--dev-text-dim)",
+            transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
+          }}
+        >
+          ›
+        </span>
+      </button>
+
+      {isOpen && (
+        <div className="mt-1">
+          {accounts.map((account, i) => (
+            <AccountRow key={i} account={account} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function DevAccounts() {
   const { groomSide, brideSide } = invitationConfig.accounts;
 
@@ -65,30 +109,17 @@ export default function DevAccounts() {
     <section className="px-4 py-6 sm:px-6">
       <Reveal>
         <TerminalWindow title=".env.gift - 마음 전하실 곳">
-          <div>
-            <p
-              className="text-xs"
-              style={{ color: "var(--dev-accent-blue)" }}
-            >
-              groom.team
-            </p>
-            <div className="mt-1">
-              {groomSide.map((account, i) => (
-                <AccountRow key={i} account={account} />
-              ))}
-            </div>
-
-            <p
-              className="mt-4 text-xs"
-              style={{ color: "var(--dev-accent-pink)" }}
-            >
-              bride.team
-            </p>
-            <div className="mt-1">
-              {brideSide.map((account, i) => (
-                <AccountRow key={i} account={account} />
-              ))}
-            </div>
+          <div className="space-y-3">
+            <AccountGroup
+              label="groom.team"
+              color="var(--dev-accent-blue)"
+              accounts={groomSide}
+            />
+            <AccountGroup
+              label="bride.team"
+              color="var(--dev-accent-pink)"
+              accounts={brideSide}
+            />
           </div>
         </TerminalWindow>
       </Reveal>
