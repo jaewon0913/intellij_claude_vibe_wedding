@@ -36,11 +36,13 @@ function CoupleCard({
         style={{ color: "var(--dev-text)" }}
       >
         <p>
-          name: <span style={{ color: "var(--dev-accent-orange)" }}>{person.name}</span>
+          <span style={{ color: "var(--dev-accent-blue)" }}>name</span>:{" "}
+          <span style={{ color: "var(--dev-accent-orange)" }}>{person.name}</span>
         </p>
         {person.nameEn && (
           <p>
-            name_en:{" "}
+            <span style={{ color: "var(--dev-accent-blue)" }}>name_en</span>
+            :{" "}
             <span style={{ color: "var(--dev-accent-orange)" }}>
               &quot;{person.nameEn}&quot;
             </span>
@@ -48,12 +50,13 @@ function CoupleCard({
         )}
         {person.mbti && (
           <p>
-            mbti: <span style={{ color: "var(--dev-accent-orange)" }}>{person.mbti}</span>
+            <span style={{ color: "var(--dev-accent-blue)" }}>mbti</span>:{" "}
+            <span style={{ color: "var(--dev-accent-orange)" }}>{person.mbti}</span>
           </p>
         )}
         {person.hobby && (
           <p>
-            hobby:{" "}
+            <span style={{ color: "var(--dev-accent-blue)" }}>hobby</span>:{" "}
             <span style={{ color: "var(--dev-accent-orange)" }}>
               &quot;{person.hobby}&quot;
             </span>
@@ -61,7 +64,8 @@ function CoupleCard({
         )}
         {person.specialty && (
           <p>
-            specialty:{" "}
+            <span style={{ color: "var(--dev-accent-blue)" }}>specialty</span>
+            :{" "}
             <span style={{ color: "var(--dev-accent-orange)" }}>
               &quot;{person.specialty}&quot;
             </span>
