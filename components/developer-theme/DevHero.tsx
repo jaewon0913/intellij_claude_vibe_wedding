@@ -65,6 +65,8 @@ function BranchMergeGraphic({ start }: { start: boolean }) {
 
 export default function DevHero() {
   const { groomName, brideName, eventDateText } = invitationConfig.hero;
+  const { venueName, hallName } = invitationConfig.eventInfo;
+  const { address, transitInfo } = invitationConfig.location;
 
   // 화면에 순서대로 타이핑되는 터미널 대사. 문구는 전부 새로 작성한 것.
   const lines: TermLine[] = [
@@ -192,9 +194,47 @@ export default function DevHero() {
         >
           {brideName}
         </h1>
-        <p className="mt-4 text-xs" style={{ color: "var(--dev-text-dim)" }}>
+        <p
+          className="mt-4 text-sm font-bold tracking-wide"
+          style={{ color: "var(--dev-accent-yellow)" }}
+        >
           {eventDateText}
         </p>
+      </div>
+
+      <div
+        className="mx-auto mt-6 max-w-[320px] rounded-xl border p-5 text-center"
+        style={{
+          borderColor: "var(--dev-accent-pink)",
+          backgroundColor: "var(--dev-bg-panel)",
+        }}
+      >
+        <p
+          className="text-xs tracking-[0.3em]"
+          style={{ color: "var(--dev-accent-pink)" }}
+        >
+          LOCATION
+        </p>
+        <p
+          className="mt-3 text-lg font-bold"
+          style={{ color: "var(--dev-text)" }}
+        >
+          {venueName}{" "}
+          <span
+            className="text-sm font-normal"
+            style={{ color: "var(--dev-text-dim)" }}
+          >
+            {hallName}
+          </span>
+        </p>
+        <p className="mt-2 text-xs" style={{ color: "var(--dev-text-dim)" }}>
+          {address}
+        </p>
+        {transitInfo?.[0] && (
+          <p className="mt-1 text-xs" style={{ color: "var(--dev-text-dim)" }}>
+            {transitInfo[0]}
+          </p>
+        )}
       </div>
     </section>
   );
