@@ -1,4 +1,5 @@
 import DevHero from "@/components/developer-theme/DevHero";
+import DevReadme from "@/components/developer-theme/DevReadme";
 import DevCoupleYaml from "@/components/developer-theme/DevCoupleYaml";
 import DevGitLog from "@/components/developer-theme/DevGitLog";
 import DevDeployCard from "@/components/developer-theme/DevDeployCard";
@@ -15,6 +16,7 @@ export default function DeveloperThemePage() {
   return (
     <main className="pb-12">
       <DevHero />
+      <DevReadme />
       <DevCoupleYaml />
       <DevGitLog />
       <DevDeployCard />
