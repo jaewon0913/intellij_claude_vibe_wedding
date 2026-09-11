@@ -8,12 +8,16 @@ import TerminalWindow from "./TerminalWindow";
 import Reveal from "@/components/ui/Reveal";
 
 function InfoBlock({
+  icon,
   label,
   enLabel,
+  color,
   lines,
 }: {
+  icon: string;
   label: string;
   enLabel: string;
+  color: string;
   lines?: string[];
 }) {
   if (!lines || lines.length === 0) return null;
@@ -21,11 +25,11 @@ function InfoBlock({
     <div className="mb-3 last:mb-0">
       <p className="text-xs" style={{ color: "var(--dev-text-dim)" }}>
         {"# "}
-        {label} — {enLabel}
+        {icon} {label} — {enLabel}
       </p>
       <div
         className="mt-1 space-y-0.5 text-[13px] leading-relaxed sm:text-sm"
-        style={{ color: "var(--dev-accent-yellow)" }}
+        style={{ color }}
       >
         {lines.map((line, i) => (
           <p key={i}>{line}</p>
@@ -138,8 +142,20 @@ export default function DevLocation() {
         {(transitInfo || shuttleInfo) && (
           <div className="mt-3">
             <TerminalWindow title="$ cat transit.txt">
-              <InfoBlock label="지하철" enLabel="subway" lines={transitInfo} />
-              <InfoBlock label="버스" enLabel="bus" lines={shuttleInfo} />
+              <InfoBlock
+                icon="🚇"
+                label="지하철"
+                enLabel="subway"
+                color="var(--dev-accent-blue)"
+                lines={transitInfo}
+              />
+              <InfoBlock
+                icon="🚌"
+                label="버스"
+                enLabel="bus"
+                color="var(--dev-accent-green)"
+                lines={shuttleInfo}
+              />
             </TerminalWindow>
           </div>
         )}
@@ -147,7 +163,13 @@ export default function DevLocation() {
         {parkingInfo && parkingInfo.length > 0 && (
           <div className="mt-3">
             <TerminalWindow title="$ cat parking.txt">
-              <InfoBlock label="주차 안내" enLabel="parking" lines={parkingInfo} />
+              <InfoBlock
+                icon="🚗"
+                label="주차 안내"
+                enLabel="parking"
+                color="var(--dev-accent-orange)"
+                lines={parkingInfo}
+              />
             </TerminalWindow>
           </div>
         )}
