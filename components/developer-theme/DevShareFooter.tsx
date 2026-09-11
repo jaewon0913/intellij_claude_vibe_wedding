@@ -9,6 +9,14 @@ import { useToast } from "@/components/providers/ToastProvider";
 import Reveal from "@/components/ui/Reveal";
 import TerminalWindow from "./TerminalWindow";
 
+function KakaoIcon() {
+  return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
+        <path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.76 1.84 5.19 4.62 6.58-.2.73-.73 2.66-.84 3.07-.13.5.18.5.39.36.16-.11 2.6-1.77 3.66-2.49.71.1 1.44.15 2.17.15 5.52 0 10-3.48 10-7.8S17.52 3 12 3Z" />
+      </svg>
+  );
+}
+
 export default function DevShareFooter() {
   const { share, hero } = invitationConfig;
   const { showToast } = useToast();
@@ -44,7 +52,7 @@ export default function DevShareFooter() {
             color: "var(--dev-bg)",
           }}
         >
-          $ ./share --invite
+          $ ./share --invite <KakaoIcon />
         </button>
 
         <Link
@@ -56,7 +64,7 @@ export default function DevShareFooter() {
             backgroundColor: "var(--dev-bg-panel)",
           }}
         >
-          👤 기본 버전으로 이동
+          🤵🏻👰🏻 기본 버전으로 이동
         </Link>
 
         {/* 문구는 원본 사이트와 다른 소재(커널 모듈 대신 systemd 서비스)로 새로 작성함 */}

@@ -7,6 +7,7 @@ import DevGallery from "@/components/developer-theme/DevGallery";
 import DevLocation from "@/components/developer-theme/DevLocation";
 import DevAccounts from "@/components/developer-theme/DevAccounts";
 import DevContact from "@/components/developer-theme/DevContact";
+import DevAiGreetings from "@/components/developer-theme/DevAiGreetings";
 import DevShareFooter from "@/components/developer-theme/DevShareFooter";
 
 // site_settings(꽃잎 on/off 등)는 이 테마에서 쓰지 않지만, 갤러리/토스트 등은
@@ -25,6 +26,7 @@ export default function DeveloperThemePage() {
       <DevLocation />
       <DevAccounts />
       <DevContact />
+      <DevAiGreetings />
       <DevShareFooter />
     </main>
   );
