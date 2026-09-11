@@ -7,6 +7,7 @@ import LocationMap from "@/components/sections/LocationMap";
 import AccountInfo from "@/components/sections/AccountInfo";
 import Contact from "@/components/sections/Contact";
 import ShareFooter from "@/components/sections/ShareFooter";
+import DevThemeLink from "@/components/sections/DevThemeLink";
 import { getSiteSettings } from "@/lib/supabase/queries";
 
 // 루트 레이아웃이 Supabase에서 site_settings(꽃잎 on/off 등)를 매 요청마다 읽어와서
@@ -27,6 +28,7 @@ export default async function Home() {
       <AccountInfo />
       <Contact />
       <ShareFooter closingImageEnabled={closingImageEnabled} />
+      <DevThemeLink />
     </main>
   );
 }

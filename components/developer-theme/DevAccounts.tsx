@@ -111,12 +111,12 @@ export default function DevAccounts() {
         <TerminalWindow title=".env.gift - 마음 전하실 곳">
           <div className="space-y-3">
             <AccountGroup
-              label="groom.team"
+              label="groom.team(신랑 측 마음 전하실 곳)"
               color="var(--dev-accent-blue)"
               accounts={groomSide}
             />
             <AccountGroup
-              label="bride.team"
+              label="bride.team(신부 측 마음 전하실 곳)"
               color="var(--dev-accent-pink)"
               accounts={brideSide}
             />
